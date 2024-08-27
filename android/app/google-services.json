@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "859905496197",
+    "project_id": "design-project-edc85",
+    "storage_bucket": "design-project-edc85.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:859905496197:android:56739f3b4585f56415c5ec",
+        "android_client_info": {
+          "package_name": "com.example.login"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVGUm86jfF8qMpwyNUJPM3rTdCSpRjyLM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
