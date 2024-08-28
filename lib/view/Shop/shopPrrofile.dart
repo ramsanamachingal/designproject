@@ -1,42 +1,27 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class DesignerProfile extends StatefulWidget {
-  const DesignerProfile({super.key});
+class ShopProfile extends StatefulWidget {
+  const ShopProfile({super.key});
 
   @override
-  State<DesignerProfile> createState() => _DesignerProfileState();
+  State<ShopProfile> createState() => _ShopProfileState();
 }
 
-class _DesignerProfileState extends State<DesignerProfile> {
+class _ShopProfileState extends State<ShopProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          leading: IconButton(
-        onPressed: () {
-          Navigator.pop(context);
-        },
-        icon: const Icon(
-          Icons.arrow_back_ios,
-          color: Colors.pink,
-        ),
-      )
-          // ,bottom: PreferredSize(preferredSize: Size.fromHeight(
-          //   20
-          // ), child: Divider(color: Colors.pink,)),
-          ),
       body: Center(
         child: Column(
           children: [
             const CircleAvatar(
               radius: 100,
               backgroundImage:
-                  AssetImage('assets/fd3204f6a96131bfc87294db5118dd36.jpg'),
+                  AssetImage("assets/34f30878d687ed5f545f12f984bf2774.jpg"),
             ),
             Text(
-              "Rose Marry",
+              "Max Fashion",
               style: GoogleFonts.pacifico(fontSize: 30, color: Colors.pink),
             ),
             Text(
@@ -58,7 +43,7 @@ class _DesignerProfileState extends State<DesignerProfile> {
             ])
           ],
         ),
-      ),
+      )
     );
   }
 }

@@ -27,20 +27,20 @@ class _ProfileState extends State<Profile> {
                             "assets/af2753cb460f804a08f61d8da0a099c2.jpg"),
                         fit: BoxFit.cover)),
               )),
-              Padding(
-                padding: const EdgeInsets.only(left: 330, top: 270),
-                child: CircleAvatar(
-                  radius: 25,
-                  backgroundColor: Colors.pink,
-                  child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.camera_alt_outlined,
-                        color: Colors.white,
-                        size: 30,
-                      )),
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.only(left: 330, top: 270),
+              //   child: CircleAvatar(
+              //     radius: 25,
+              //     backgroundColor: Colors.pink,
+              //     child: IconButton(
+              //         onPressed: () {},
+              //         icon: const Icon(
+              //           Icons.camera_alt_outlined,
+              //           color: Colors.white,
+              //           size: 30,
+              //         )),
+              //   ),
+              // ),
               const Padding(
                 padding: EdgeInsets.only(top: 170, left: 80),
                 child: CircleAvatar(
@@ -49,20 +49,20 @@ class _ProfileState extends State<Profile> {
                       AssetImage('assets/fd3204f6a96131bfc87294db5118dd36.jpg'),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 220, top: 320),
-                child: CircleAvatar(
-                  radius: 25,
-                  backgroundColor: Colors.pink,
-                  child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.camera_alt_outlined,
-                        color: Colors.white,
-                        size: 30,
-                      )),
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.only(left: 220, top: 320),
+              //   child: CircleAvatar(
+              //     radius: 25,
+              //     backgroundColor: Colors.pink,
+              //     child: IconButton(
+              //         onPressed: () {},
+              //         icon: const Icon(
+              //           Icons.camera_alt_outlined,
+              //           color: Colors.white,
+              //           size: 30,
+              //         )),
+              //   ),
+              // ),
             ],
           ),
           Center(
