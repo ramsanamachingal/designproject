@@ -7,6 +7,8 @@ import 'package:login/view/first/login.dart';
 import 'package:login/view/first/page1.dart';
 
 import 'package:login/view/first/signup.dart';
+import 'package:login/view/user/designers.dart';
+import 'package:login/view/user/profile.dart';
 
 Future <void> main()async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: FirstPage(),
+      home: Profile (),
     );
   }
 }

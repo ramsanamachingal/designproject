@@ -82,95 +82,131 @@ class _CreateDesignState extends State<CreateDesign> {
             ),
             
           ),
-          SizedBox(height: 10,),
+          const SizedBox(height: 10,),
           Text("Cloth",style: GoogleFonts.pacifico(color: Colors.pink, fontSize: 30)),
-          Expanded(
-            child: GridView.builder(
-              scrollDirection: Axis.horizontal,itemCount: 5,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1,mainAxisSpacing: 1), itemBuilder: ((context, index) {
-              return 
+          const SizedBox(height: 20,),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: 
+          Row(
+            children: [
               Column(
-                children: [CircleAvatar(backgroundImage: AssetImage("assets/0ac3947a0ff36ce5d0ef3da5560c1b7a.jpg"),radius: 20,),Text("Rayon",style: GoogleFonts.pacifico(color: Colors.black, fontSize: 15))],
-              );
-             
-            })),
+                    children: [const CircleAvatar(backgroundImage: AssetImage("assets/0ac3947a0ff36ce5d0ef3da5560c1b7a.jpg"),radius: 20,),Text("Rayon",style: GoogleFonts.pacifico(color: Colors.black, fontSize: 15))],
+                  ),
+                  const SizedBox(width: 30,),
+                  Column(
+                    children: [const CircleAvatar(backgroundImage: AssetImage("assets/0ac3947a0ff36ce5d0ef3da5560c1b7a.jpg"),radius: 20,),Text("Rayon",style: GoogleFonts.pacifico(color: Colors.black, fontSize: 15))],
+                  ),const SizedBox(width: 30,),
+                  Column(
+                    children: [const CircleAvatar(backgroundImage: AssetImage("assets/0ac3947a0ff36ce5d0ef3da5560c1b7a.jpg"),radius: 20,),Text("Rayon",style: GoogleFonts.pacifico(color: Colors.black, fontSize: 15))],
+                  ),const SizedBox(width: 30,),
+                  Column(
+                    children: [const CircleAvatar(backgroundImage: AssetImage("assets/0ac3947a0ff36ce5d0ef3da5560c1b7a.jpg"),radius: 20,),Text("Rayon",style: GoogleFonts.pacifico(color: Colors.black, fontSize: 15))],
+                  ),const SizedBox(width: 30,),
+                  Column(
+                    children: [const CircleAvatar(backgroundImage: AssetImage("assets/0ac3947a0ff36ce5d0ef3da5560c1b7a.jpg"),radius: 20,),Text("Rayon",style: GoogleFonts.pacifico(color: Colors.black, fontSize: 15))],
+                  ),const SizedBox(width: 30,),
+                  Column(
+                    children: [const CircleAvatar(backgroundImage: AssetImage("assets/0ac3947a0ff36ce5d0ef3da5560c1b7a.jpg"),radius: 20,),Text("Rayon",style: GoogleFonts.pacifico(color: Colors.black, fontSize: 15))],
+                  ),const SizedBox(width: 30,),
+                  Column(
+                    children: [const CircleAvatar(backgroundImage: AssetImage("assets/0ac3947a0ff36ce5d0ef3da5560c1b7a.jpg"),radius: 20,),Text("Rayon",style: GoogleFonts.pacifico(color: Colors.black, fontSize: 15))],
+                  ),const SizedBox(width: 30,),
+                  Column(
+                    children: [const CircleAvatar(backgroundImage: AssetImage("assets/0ac3947a0ff36ce5d0ef3da5560c1b7a.jpg"),radius: 20,),Text("Rayon",style: GoogleFonts.pacifico(color: Colors.black, fontSize: 15))],
+                  ),
+            ],
           ),
-Row(
-  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  children: [
-  Text("Color",style: GoogleFonts.pacifico(color: Colors.pink, fontSize: 20)),
-  SizedBox(width: 20,),
-  SizedBox(
-                                height: 40,
-                                width: 220,
-                                child: TextFormField(style: const TextStyle(color: Colors.black),
-                                  decoration: InputDecoration(
-                                      border: OutlineInputBorder(
-                                          borderSide:const BorderSide(color: Colors.pink),
-                                          borderRadius: BorderRadius.circular(7)),
-                                  )
+          ),
+          const SizedBox(height: 10,),
+          
+Padding(
+  padding: const EdgeInsets.all(8.0),
+  child: Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+    Text("Color",style: GoogleFonts.pacifico(color: Colors.pink, fontSize: 20)),
+    const SizedBox(width: 20,),
+    SizedBox(
+                                  height: 40,
+                                  width: 220,
+                                  child: TextFormField(style: const TextStyle(color: Colors.black),
+                                    decoration: InputDecoration(
+                                        border: OutlineInputBorder(
+                                            borderSide:const BorderSide(color: Colors.pink),
+                                            borderRadius: BorderRadius.circular(7)),
+                                    )
+                                  ),
                                 ),
-                              ),
-],),
-SizedBox(height: 10,),
-Row(
-  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  children: [
-  
-  Text("Type",style: GoogleFonts.pacifico(color: Colors.pink, fontSize: 20)),
-  SizedBox(width: 20,),
-  SizedBox(
-                                height: 40,
-                                width: 220,
-                                child: TextFormField(style: const TextStyle(color: Colors.black),
-                                  decoration: InputDecoration(
-                                      border: OutlineInputBorder(
-                                          borderSide:const BorderSide(color: Colors.pink),
-                                          borderRadius: BorderRadius.circular(7)),
-                                          suffixIcon: DropdownButton(items: b.map((value){
-                                            return DropdownMenuItem(value: value, child: Text(value));
-                                          } ).toList(), onChanged: (value){
-                                            setState(() {
-                                              dropin=value!;
-                                            });
-                                          })
-                                  )
+  ],),
+),
+const SizedBox(height: 10,),
+Padding(
+  padding: const EdgeInsets.all(8.0),
+  child: Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+    
+    Text("Type",style: GoogleFonts.pacifico(color: Colors.pink, fontSize: 20)),
+    const SizedBox(width: 20,),
+    SizedBox(
+                                  height: 40,
+                                  width: 220,
+                                  child: TextFormField(style: const TextStyle(color: Colors.black),
+                                    decoration: InputDecoration(
+                                        border: OutlineInputBorder(
+                                            borderSide:const BorderSide(color: Colors.pink),
+                                            borderRadius: BorderRadius.circular(7)),
+                                            suffixIcon: DropdownButton(items: b.map((value){
+                                              return DropdownMenuItem(value: value, child: Text(value));
+                                            } ).toList(), onChanged: (value){
+                                              setState(() {
+                                                dropin=value!;
+                                              });
+                                            })
+                                    )
+                                  ),
                                 ),
-                              ),
-],),
-SizedBox(height: 10,),
-Row(
-  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  children: [
-  Text("Designers",style: GoogleFonts.pacifico(color: Colors.pink, fontSize: 20)),
-  SizedBox(width: 20,),
-  SizedBox(
-                                height: 40,
-                                width: 220,
-                                child: TextFormField(style: const TextStyle(color: Colors.black),
-                                  decoration: InputDecoration(
-                                      border: OutlineInputBorder(
-                                          borderSide:const BorderSide(color: Colors.pink),
-                                          borderRadius: BorderRadius.circular(7)),
-                                  )
+  ],),
+),
+const SizedBox(height: 10,),
+Padding(
+  padding: const EdgeInsets.all(8.0),
+  child: Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+    Text("Designers",style: GoogleFonts.pacifico(color: Colors.pink, fontSize: 20)),
+    const SizedBox(width: 20,),
+    SizedBox(
+                                  height: 40,
+                                  width: 220,
+                                  child: TextFormField(style: const TextStyle(color: Colors.black),
+                                    decoration: InputDecoration(
+                                        border: OutlineInputBorder(
+                                            borderSide:const BorderSide(color: Colors.pink),
+                                            borderRadius: BorderRadius.circular(7)),
+                                    )
+                                  ),
                                 ),
-                              ),
-],),
-SizedBox(height: 20,),
- SizedBox(
-                                      height: 40,
-                                      width: 200,
-                                      child: ElevatedButton(
-                                          style: ButtonStyle(
-                                                                shape: MaterialStatePropertyAll(
-                                                                    RoundedRectangleBorder(
-                                                                        borderRadius: BorderRadius.circular(7),
-                                                                        side: BorderSide(color: Colors.white))),
-                                                                backgroundColor: MaterialStatePropertyAll(
-                                                                    const Color.fromARGB(255, 252, 158, 189))),
-                                          onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context)=>BookingPage()));},
-                                          child:  Text("Book",style:GoogleFonts.inknutAntiqua(color:Colors.white),))),
-                                      SizedBox(height: 30,)
+  ],),
+),
+const SizedBox(height: 10,),
+ Center(
+   child: SizedBox(
+    height: 40,width: 200,
+     child: ElevatedButton(
+         style: ButtonStyle(
+                               shape: MaterialStatePropertyAll(
+                                   RoundedRectangleBorder(
+                                       borderRadius: BorderRadius.circular(7),
+                                       side: const BorderSide(color: Colors.white))),
+                               backgroundColor: const MaterialStatePropertyAll(
+                                   Color.fromARGB(255, 252, 158, 189))),
+         onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context)=>const BookingPage()));},
+         child:  Text("Book",style:GoogleFonts.inknutAntiqua(color:Colors.white),)),
+   ),
+ ),
+                                      const SizedBox(height: 30,)
         ],),
       ),
     );

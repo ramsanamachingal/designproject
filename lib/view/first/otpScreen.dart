@@ -1,9 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:login/view/user/home.dart';
 import 'package:pinput/pinput.dart';
 
 class OtpScreen extends StatefulWidget {
-  const OtpScreen({super.key});
+  final String vid;
+
+  const OtpScreen({super.key, required this.vid});
 
   @override
   State<OtpScreen> createState() => _OtpScreenState();
@@ -40,12 +44,16 @@ class _OtpScreenState extends State<OtpScreen> {
               });
             },
           ),
-          SizedBox(height: 80,),
+          SizedBox(
+            height: 80,
+          ),
           ElevatedButton(
             style: ButtonStyle(
                 shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(7),
-                    side: BorderSide(color: Colors.white))),backgroundColor: MaterialStatePropertyAll(const Color.fromARGB(255, 231, 121, 158))),
+                    side: BorderSide(color: Colors.white))),
+                backgroundColor: MaterialStatePropertyAll(
+                    const Color.fromARGB(255, 231, 121, 158))),
             onPressed: () {},
             child: Text(
               "Verify",
@@ -55,5 +63,19 @@ class _OtpScreenState extends State<OtpScreen> {
         ],
       ),
     );
+  }
+
+  signIn() async {
+    PhoneAuthCredential credential =
+        PhoneAuthProvider.credential(verificationId: widget.vid, smsCode: code);
+    try {
+      await FirebaseAuth.instance.signInWithCredential(credential).then(
+          (value) => Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => const HomePage())));
+    } on FirebaseAuthException catch (e) {
+      print('Error Occured: ${e.code}');
+    } catch (e) {
+      print('Error Occured : ${e.toString()}');
+    }
   }
 }

@@ -49,7 +49,7 @@ on FirebaseAuthException catch(e){
   Future<void>sendOtp(phoneNumber,context)async{
     try{
       auth.verifyPhoneNumber(
-        phoneNumber:phoneNumber ,
+        phoneNumber:'+91 ${phoneNumber}' ,
         verificationCompleted: (PhoneAuthCredential credential) {
           
         }, 
@@ -58,7 +58,7 @@ on FirebaseAuthException catch(e){
 
       }, 
       codeSent: (String vid, int? token,){
-        Navigator.push(context, MaterialPageRoute(builder: ((context) => OtpScreen())));
+        Navigator.push(context, MaterialPageRoute(builder: ((context) => OtpScreen(vid:vid))));
       }, 
       codeAutoRetrievalTimeout: (String vid){});
     }

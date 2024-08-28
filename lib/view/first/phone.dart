@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:login/Service/firebase.dart';
 import 'package:login/view/first/otpScreen.dart';
 
 class PhoneNumberScreen extends StatefulWidget {
   const PhoneNumberScreen({super.key});
+  
 
   @override
   State<PhoneNumberScreen> createState() => _PhoneNumberScreenState();
@@ -12,6 +14,8 @@ class PhoneNumberScreen extends StatefulWidget {
 class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
   @override
   Widget build(BuildContext context) {
+    final _phoneController=TextEditingController();
+    FirebaseService auth=FirebaseService();
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(left: 50),
@@ -22,7 +26,9 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
            SizedBox(
                                   height: 50,
                                   width: 290,
-                                  child: TextFormField(style: const TextStyle(color: Colors.black),
+                                  child: TextFormField(
+                                    controller: _phoneController,
+                                    style: const TextStyle(color: Colors.black),
                                     decoration: InputDecoration(
                                         border: OutlineInputBorder(
                                             borderSide:const BorderSide(color: Colors.pink),
@@ -39,11 +45,13 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                       borderRadius: BorderRadius.circular(7),
                       side: BorderSide(color: Colors.white))),backgroundColor: MaterialStatePropertyAll(const Color.fromARGB(255, 231, 121, 158))),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpScreen()));
+                print('kkkkkkkkkkkkkkkkkkkkkkkkkkkkk');
+                auth.sendOtp(_phoneController.text, context);
+              
               },
               child: Text(
-                "Done",
-                style: GoogleFonts.pacifico(color: Colors.white, fontSize: 25),
+                "Get OTP",
+                style: GoogleFonts.pacifico(color: Colors.white, fontSize: 15),
               ),
             )
         ],),

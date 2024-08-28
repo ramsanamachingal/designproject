@@ -20,35 +20,47 @@ class _ProductDetState extends State<ProductDet> {
         padding: const EdgeInsets.only(top: 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: GridView.builder(
-                  scrollDirection: Axis.horizontal,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 1,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10),
-                  itemBuilder: (context, index) {
-                    return Stack(children: [
-                      Container(
-                        height: 380,
-                        width: 250,
-                        decoration: const BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage(
-                                    "assets/60b6980613b92e7b9913f40d32a59bc7.jpg"))),
+          children: [SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(children: [
+              Stack(children: [
+                    Container(
+                      height: 280,
+                      width: 250,
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage(
+                                  "assets/60b6980613b92e7b9913f40d32a59bc7.jpg"))),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 150, top: 240),
+                      child: Icon(
+                        Icons.heart_broken,
+                        color: Colors.pink[300],
+                        size: 30,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 180, top: 340),
-                        child: Icon(
-                          Icons.heart_broken,
-                          color: Colors.pink[300],
-                          size: 40,
-                        ),
-                      )
-                    ]);
-                  }),
-            ),
+                    )
+                  ]),
+                  Container(
+                      height: 280,
+                      width: 250,
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage(
+                                  "assets/60b6980613b92e7b9913f40d32a59bc7.jpg"))),
+                    ),
+                    Container(
+                      height: 280,
+                      width: 250,
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage(
+                                  "assets/60b6980613b92e7b9913f40d32a59bc7.jpg"))),
+                    ),
+            ],), 
+          ),
+          SizedBox(height: 20,),
+           
             Padding(
               padding: const EdgeInsets.only(
                 top: 10,left: 20
@@ -103,6 +115,7 @@ class _ProductDetState extends State<ProductDet> {
                     style:
                         GoogleFonts.pacifico(color: Colors.black, fontSize: 25),
                   ),
+                  SizedBox(height: 20,),
                   Text(
                     "Available Size",
                     style: GoogleFonts.pacifico(
@@ -193,8 +206,11 @@ class _ProductDetState extends State<ProductDet> {
                                                                             IconButton(
                                                                               
                                                                               onPressed: (){
-
-                                                                            }, icon: Icon(Icons.arrow_drop_down,color: Colors.pink[300],))
+        
+                                                                            }, icon: Icon(Icons.arrow_drop_down,color: Colors.pink[300],)),
+                                                                            // DropdownMenu(dropdownMenuEntries: a.map((value){
+                                                                            //   return DropdownMenuItem(value: value,child: Text(value));
+                                                                            // }).)
                                                                           ],
                                                                         ),
                                                                       )
@@ -208,7 +224,7 @@ class _ProductDetState extends State<ProductDet> {
                   // TextFormField(decoration: InputDecoration(
                   //   fillColor: Colors.pink[300],
                   //   border: OutlineInputBorder(borderRadius: BorderRadius.circular(7),borderSide: BorderSide(color: Colors.white)),),)
-
+        
                 ],
               ),
               
