@@ -12,11 +12,21 @@ class _ShopUploadState extends State<ShopUpload> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(leading: IconButton(onPressed: (){}, icon: Icon(Icons.menu,color: Colors.pink
-      ,)),
-      title: Text("Upload product",style: GoogleFonts.pacifico(
-                          color: Colors.pink, fontSize: 20)),
-                          bottom: PreferredSize(preferredSize: Size.fromHeight(20), child: Divider(color: Colors.pink,)),toolbarHeight: 30,
+      appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.menu,
+              color: Colors.pink,
+            )),
+        title: Text("Upload product",
+            style: GoogleFonts.pacifico(color: Colors.pink, fontSize: 20)),
+        bottom: PreferredSize(
+            preferredSize: Size.fromHeight(20),
+            child: Divider(
+              color: Colors.pink,
+            )),
+        toolbarHeight: 30,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -44,7 +54,7 @@ class _ShopUploadState extends State<ShopUpload> {
               const SizedBox(
                 height: 20,
               ),
-        
+
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
@@ -63,7 +73,8 @@ class _ShopUploadState extends State<ShopUpload> {
                           style: const TextStyle(color: Colors.black),
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
-                                borderSide: const BorderSide(color: Colors.pink),
+                                borderSide:
+                                    const BorderSide(color: Colors.pink),
                                 borderRadius: BorderRadius.circular(7)),
                           )),
                     ),
@@ -74,8 +85,11 @@ class _ShopUploadState extends State<ShopUpload> {
                 height: 10,
               ),
               Text("Available Size",
-                  style: GoogleFonts.pacifico(color: Colors.pink, fontSize: 20)),
-                  SizedBox(height: 30,),
+                  style:
+                      GoogleFonts.pacifico(color: Colors.pink, fontSize: 20)),
+              SizedBox(
+                height: 30,
+              ),
               // ignore: prefer_const_constructors
               Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -85,8 +99,8 @@ class _ShopUploadState extends State<ShopUpload> {
                       Container(
                         height: 40,
                         width: 40,
-                        decoration:
-                            BoxDecoration(border: Border.all(color: Colors.pink)),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.pink)),
                         child: Center(
                             child: Text(
                           "XS",
@@ -94,55 +108,62 @@ class _ShopUploadState extends State<ShopUpload> {
                               color: Colors.pink, fontSize: 20),
                         )),
                       ),
-                       Container(
+                      Container(
                         height: 40,
                         width: 40,
-                        decoration:
-                            BoxDecoration(border: Border.all(color: Colors.pink)),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.pink)),
                         child: Center(
                             child: Text(
                           "S",
                           style: GoogleFonts.pacifico(
                               color: Colors.pink, fontSize: 20),
                         )),
-                      ), Container(
+                      ),
+                      Container(
                         height: 40,
                         width: 40,
-                        decoration:
-                            BoxDecoration(border: Border.all(color: Colors.pink),color: Colors.pink),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.pink),
+                            color: Colors.pink),
                         child: Center(
                             child: Text(
                           "M",
                           style: GoogleFonts.pacifico(
                               color: Colors.white, fontSize: 20),
                         )),
-                      ), Container(
+                      ),
+                      Container(
                         height: 40,
                         width: 40,
-                        decoration:
-                            BoxDecoration(border: Border.all(color: Colors.pink),color: Colors.pink),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.pink),
+                            color: Colors.pink),
                         child: Center(
                             child: Text(
                           "L",
                           style: GoogleFonts.pacifico(
                               color: Colors.white, fontSize: 20),
                         )),
-                      ), Container(
+                      ),
+                      Container(
                         height: 40,
                         width: 40,
-                        decoration:
-                            BoxDecoration(border: Border.all(color: Colors.pink),color: Colors.pink),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.pink),
+                            color: Colors.pink),
                         child: Center(
                             child: Text(
                           "XL",
                           style: GoogleFonts.pacifico(
                               color: Colors.white, fontSize: 20),
                         )),
-                      ), Container(
+                      ),
+                      Container(
                         height: 40,
                         width: 40,
-                        decoration:
-                            BoxDecoration(border: Border.all(color: Colors.pink)),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.pink)),
                         child: Center(
                             child: Text(
                           "XXL",
@@ -176,15 +197,45 @@ class _ShopUploadState extends State<ShopUpload> {
                           style: const TextStyle(color: Colors.black),
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
-                                borderSide: const BorderSide(color: Colors.pink),
+                                borderSide:
+                                    const BorderSide(color: Colors.pink),
                                 borderRadius: BorderRadius.circular(7)),
                           )),
                     ),
                   ],
                 ),
               ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 20,
+                    width: 20,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.pink),
+                        borderRadius: BorderRadius.circular(50)),
+                  ),
+                  SizedBox(width: 20,),
+                  Text("Post",style: GoogleFonts.pacifico(
+                            color: Colors.pink, fontSize: 20)),
+                            SizedBox(width: 10,),
+                             Container(
+                    height: 20,
+                    width: 20,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.pink),
+                        borderRadius: BorderRadius.circular(50)),
+                  ),
+                  SizedBox(width: 20,),
+                  Text("Reel",style: GoogleFonts.pacifico(
+                            color: Colors.pink, fontSize: 20))
+                ],
+              ),
               const SizedBox(
-                height: 90,
+                height: 30,
               ),
               Center(
                 child: SizedBox(
@@ -192,9 +243,10 @@ class _ShopUploadState extends State<ShopUpload> {
                   width: 200,
                   child: ElevatedButton(
                       style: ButtonStyle(
-                          shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(7),
-                              side: const BorderSide(color: Colors.white))),
+                          shape: MaterialStatePropertyAll(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(7),
+                                  side: const BorderSide(color: Colors.white))),
                           backgroundColor: const MaterialStatePropertyAll(
                               Color.fromARGB(255, 252, 158, 189))),
                       onPressed: () {

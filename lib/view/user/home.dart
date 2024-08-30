@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Home"),
+        title:  Text("Home",style:GoogleFonts.pacifico(color:Colors.pink),),
       ),
       drawer: Drawer(
         backgroundColor: Colors.black,
@@ -67,7 +67,7 @@ class _HomePageState extends State<HomePage> {
                               builder: (context) => const Profile()));
                     },
                     child: Text(
-                      "Profile",
+                      "View bag",
                       style: GoogleFonts.inknutAntiqua(color: Colors.white),
                     )),
               ),

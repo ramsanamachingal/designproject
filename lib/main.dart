@@ -11,6 +11,8 @@ import 'package:login/view/designer/deshom.dart';
 import 'package:login/view/designer/order.dart';
 import 'package:login/view/designer/upload.dart';
 import 'package:login/view/designer/vaccancies.dart';
+import 'package:login/view/function.dart/des_bottom.dart';
+import 'package:login/view/function.dart/shop_bottom.dart';
 import 'package:login/view/user/create.dart';
 import 'package:login/view/first/login.dart';
 import 'package:login/view/first/page1.dart';
@@ -32,9 +34,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ShopProfile (),
+      home:ShopBottom (indexnum: 0,),
     );
   }
 }

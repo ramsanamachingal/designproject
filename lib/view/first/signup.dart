@@ -5,6 +5,7 @@ import 'package:login/Service/firebase.dart';
 import 'package:login/view/first/google.dart';
 import 'package:login/view/first/otpScreen.dart';
 import 'package:login/view/first/phone.dart';
+import 'package:login/view/function.dart/style.dart';
 import 'package:login/view/user/home.dart';
 
 class SignUp extends StatefulWidget {
@@ -139,7 +140,7 @@ class _SignUpState extends State<SignUp> {
                     borderRadius: BorderRadius.circular(7),side: const BorderSide(color: Colors.white))),
                    backgroundColor: const MaterialStatePropertyAll(Color.fromARGB(255, 252, 158, 189))),onPressed: (){
                     signUp();
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>const HomePage()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>packages(indexnum: 0)));
                   }, child: Text('Sign Up',style: GoogleFonts.inknutAntiqua(color:Colors.white),)),
             Row(
               children: [
@@ -147,7 +148,8 @@ class _SignUpState extends State<SignUp> {
                   Navigator.push(context, MaterialPageRoute(builder: (context)=>PhoneNumberScreen()));
                 }, icon: Icon(Icons.phone,color: Colors.pink,)),
                  IconButton(onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>GoogleScreen()));
+              obj.signInWithGoogle(context);
+              //Navigator.push(context, MaterialPageRoute(builder: (context)=>GoogleScreen()));
             }, icon: Icon(Icons.phone,color: Colors.pink,))
               ],
             ),

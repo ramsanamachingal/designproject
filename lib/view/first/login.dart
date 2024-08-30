@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:login/Service/firebase.dart';
 import 'package:login/view/first/foget.dart';
+import 'package:login/view/function.dart/style.dart';
 import 'package:login/view/user/home.dart';
 
 class Login extends StatefulWidget {
@@ -94,7 +95,7 @@ class _LoginState extends State<Login> {
                     child: TextButton(
                         onPressed: () {
                           obj1.forgetPassword(_emailcontroller.text);
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>ForgetPassword()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>const ForgetPassword()));
                         },
                         child: Text(
                           "Foget Password?",
@@ -122,7 +123,7 @@ class _LoginState extends State<Login> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const HomePage()));
+                                  builder: (context) =>  packages(indexnum: 0)));
                         },
                         child: Text(
                           'Login',

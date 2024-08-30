@@ -48,13 +48,17 @@ class _DesignerProfileState extends State<DesignerProfile> {
               Tab(icon: Icon(Icons.image,color: Colors.pink,),),
               Tab(icon: Icon(Icons.videocam_rounded,),),
               Tab(icon: Icon(Icons.person,),)
-            ])),TabBarView(children: [
-              GridView.builder(gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 3), itemBuilder: (context,index){
-                return Container(
-                  height: 70,width: 150,
-                  decoration: const BoxDecoration(image: DecorationImage(image: AssetImage("assets/07e9ed3375cbffee32362548148529b3.jpg"))),
-                );
-              })
+            ])),
+            TabBarView(children: [
+              // PostScreen(),
+              // VideoScreen(),
+              // ProfileScreen()
+              // GridView.builder(gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 3), itemBuilder: (context,index){
+              //   return Container(
+              //     height: 70,width: 150,
+              //     decoration: const BoxDecoration(image: DecorationImage(image: AssetImage("assets/07e9ed3375cbffee32362548148529b3.jpg"))),
+              //   );
+              // })
             ])
           ],
         ),

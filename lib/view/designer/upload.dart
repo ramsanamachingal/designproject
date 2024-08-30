@@ -16,11 +16,11 @@ class _DesignerUploadState extends State<DesignerUpload> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(leading: IconButton(onPressed: (){}, icon: Icon(Icons.menu,color: Colors.pink
+      appBar: AppBar(leading: IconButton(onPressed: (){}, icon: const Icon(Icons.menu,color: Colors.pink
       ,)),
       title: Text("Upload product",style: GoogleFonts.pacifico(
                           color: Colors.pink, fontSize: 20)),
-                          bottom: PreferredSize(preferredSize: Size.fromHeight(20), child: Divider(color: Colors.pink,)),toolbarHeight: 30,
+                          bottom: const PreferredSize(preferredSize: Size.fromHeight(20), child: Divider(color: Colors.pink,)),toolbarHeight: 30,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -79,7 +79,7 @@ class _DesignerUploadState extends State<DesignerUpload> {
               ),
               Text("Available Size",
                   style: GoogleFonts.pacifico(color: Colors.pink, fontSize: 20)),
-                  SizedBox(height: 30,),
+                  const SizedBox(height: 30,),
               // ignore: prefer_const_constructors
               Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -187,8 +187,34 @@ class _DesignerUploadState extends State<DesignerUpload> {
                   ],
                 ),
               ),
+               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 20,
+                    width: 20,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.pink),
+                        borderRadius: BorderRadius.circular(50)),
+                  ),
+                  const SizedBox(width: 20,),
+                  Text("Post",style: GoogleFonts.pacifico(
+                            color: Colors.pink, fontSize: 20)),
+                            const SizedBox(width: 10,),
+                             Container(
+                    height: 20,
+                    width: 20,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.pink),
+                        borderRadius: BorderRadius.circular(50)),
+                  ),
+                  const SizedBox(width: 20,),
+                  Text("Reel",style: GoogleFonts.pacifico(
+                            color: Colors.pink, fontSize: 20))
+                ],
+              ),
               const SizedBox(
-                height: 90,
+                height: 30,
               ),
               Center(
                 child: SizedBox(
