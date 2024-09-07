@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:login/view/user/bag.dart';
 List <String>a=["call","chat"];
@@ -191,9 +192,11 @@ class _ProductDetState extends State<ProductDet> {
                     
                     
                   ],
-                ),
-                const SizedBox(height: 50,),
+                ),const SizedBox(height: 20,),
+                Text("Available quantity is:5",style: GoogleFonts.pacifico(color:Colors.pink,fontSize:20),),
+                const SizedBox(height: 30,),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
                                         height: 40,
@@ -208,42 +211,44 @@ class _ProductDetState extends State<ProductDet> {
                                 Color.fromARGB(255, 252, 158, 189))),
                                             onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context)=>const AddToBag()));},
                                             child:  Text("Add to bag",style:GoogleFonts.pacifico(color:Colors.white,fontSize:20),),),),
-                                                               
-                                                               Center(
-                                                                 child: Stack(
-                                                                   children:[ Container
-                                                                   (height: 40,width: 170,
-                                                                    decoration: BoxDecoration(color: const Color.fromARGB(255, 252, 158, 189),border: Border.all(color: Colors.white),borderRadius: BorderRadius.circular(7))),
-                                                                    Padding(
-                                                                      padding: const EdgeInsets.only(left: 40,),
-                                                                      child: Row(
-                                                                        children: [
-                                                                          Text("Contact",style: GoogleFonts.pacifico(color:Colors.white,fontSize:20),),
-                                                                          IconButton(
-                                                                            
-                                                                            onPressed: (){
-      
-                                                                          }, icon: Icon(Icons.arrow_drop_down,color: Colors.pink[300],)),
-                                                                          // DropdownMenu(dropdownMenuEntries: a.map((value){
-                                                                          //   return DropdownMenuItem(value: value,child: Text(value));
-                                                                          // }).)
-                                                                        ],
-                                                                      ),
-                                                                    )
-                                                                    ]
-                                                                 ,
-                                                                 ),
-                                                               )
+                                                             
                                                                ],
                 ),
                 
-                // TextFormField(decoration: InputDecoration(
-                //   fillColor: Colors.pink[300],
-                //   border: OutlineInputBorder(borderRadius: BorderRadius.circular(7),borderSide: BorderSide(color: Colors.white)),),)
-      
+                
               ],
             ),
             
+          ),
+        ],
+      ),
+      floatingActionButton: SpeedDial(
+        icon: Icons.perm_contact_calendar_rounded,
+        
+        activeIcon: Icons.close,
+        backgroundColor:  Colors.pink,
+        children: [
+          SpeedDialChild(
+            child: const Icon(Icons.call),
+            label: 'Call',
+            backgroundColor: Colors.grey[100],
+            onTap: () {
+              // Navigator.push(context,
+              //     MaterialPageRoute(builder: (context) => const Post()));
+            },
+          ),
+          SpeedDialChild(
+            child: const Icon(Icons.chat),
+            label: 'Chat',
+            backgroundColor: const Color.fromRGBO(244, 241, 229, 1),
+            onTap: () {
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => const QuestionsPost(),
+              //   ),
+              // );
+            },
           ),
         ],
       ),

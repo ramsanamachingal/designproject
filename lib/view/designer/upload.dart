@@ -187,32 +187,32 @@ class _DesignerUploadState extends State<DesignerUpload> {
                   ],
                 ),
               ),
-               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    height: 20,
-                    width: 20,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.pink),
-                        borderRadius: BorderRadius.circular(50)),
-                  ),
-                  const SizedBox(width: 20,),
-                  Text("Post",style: GoogleFonts.pacifico(
-                            color: Colors.pink, fontSize: 20)),
-                            const SizedBox(width: 10,),
-                             Container(
-                    height: 20,
-                    width: 20,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.pink),
-                        borderRadius: BorderRadius.circular(50)),
-                  ),
-                  const SizedBox(width: 20,),
-                  Text("Reel",style: GoogleFonts.pacifico(
-                            color: Colors.pink, fontSize: 20))
-                ],
-              ),
+              //  Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     Container(
+              //       height: 20,
+              //       width: 20,
+              //       decoration: BoxDecoration(
+              //           border: Border.all(color: Colors.pink),
+              //           borderRadius: BorderRadius.circular(50)),
+              //     ),
+              //     const SizedBox(width: 20,),
+              //     Text("Post",style: GoogleFonts.pacifico(
+              //               color: Colors.pink, fontSize: 20)),
+              //               const SizedBox(width: 10,),
+              //                Container(
+              //       height: 20,
+              //       width: 20,
+              //       decoration: BoxDecoration(
+              //           border: Border.all(color: Colors.pink),
+              //           borderRadius: BorderRadius.circular(50)),
+              //     ),
+              //     const SizedBox(width: 20,),
+              //     Text("Reel",style: GoogleFonts.pacifico(
+              //               color: Colors.pink, fontSize: 20))
+              //   ],
+              // ),
               const SizedBox(
                 height: 30,
               ),

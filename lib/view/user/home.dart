@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:login/view/user/create.dart';
 import 'package:login/view/user/detail.dart';
 import 'package:login/view/user/profile.dart';
 
@@ -16,7 +17,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:  Text("Home",style:GoogleFonts.pacifico(color:Colors.pink),),
+        title: Text(
+          "Home",
+          style: GoogleFonts.pacifico(color: Colors.pink),
+        ),
       ),
       drawer: Drawer(
         backgroundColor: Colors.black,
@@ -71,6 +75,38 @@ class _HomePageState extends State<HomePage> {
                       style: GoogleFonts.inknutAntiqua(color: Colors.white),
                     )),
               ),
+              Divider(),
+              ListTile(
+                leading: const Icon(Icons.person),
+                title: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Profile()));
+                    },
+                    child: Text(
+                      "order status",
+                      style: GoogleFonts.inknutAntiqua(color: Colors.white),
+                    )),
+              ),
+               Divider(),
+              ListTile(
+                leading: const Icon(Icons.person),
+                title: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Profile()));
+                    },
+                    child: Text(
+                      "Booking status",
+                      style: GoogleFonts.inknutAntiqua(color: Colors.white),
+                    )),
+              ),
+              Text("Are u a designer or shop owner?would you like to join with us?",style:GoogleFonts.inknutAntiqua(color: Colors.white) ,),
+              TextButton(onPressed: (){}, child: Text("info"))
             ],
           ),
         ),
@@ -107,7 +143,8 @@ class _HomePageState extends State<HomePage> {
                         decoration: const BoxDecoration(
                             image: DecorationImage(
                                 image: AssetImage(
-                                    "assets/60b6980613b92e7b9913f40d32a59bc7.jpg"))),
+                                    "assets/60b6980613b92e7b9913f40d32a59bc7.jpg"),
+                                fit: BoxFit.cover)),
                         // child: Center(child: Text("Item $index"),),
                       );
                     }),
@@ -139,43 +176,58 @@ class _HomePageState extends State<HomePage> {
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>ProductDet()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const ProductDet()));
                           },
                           child: Container(
                             decoration: const BoxDecoration(
                                 image: DecorationImage(
                                     image: AssetImage(
-                              "assets/60b6980613b92e7b9913f40d32a59bc7.jpg",
-                            ))),
+                                      "assets/60b6980613b92e7b9913f40d32a59bc7.jpg",
+                                    ),
+                                    fit: BoxFit.cover)),
                             //child: Center(child: Text("item $index"),),
                           ),
                         );
                       }),
                 ),
-              ),SizedBox(height: 20,),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
               Text(
                 "Shoppers Product",
                 style: GoogleFonts.pacifico(color: Colors.pink, fontSize: 25),
               ),
-              SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               Container(
                 height: 200,
                 child: GridView.builder(
-                  scrollDirection: Axis.horizontal,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    scrollDirection: Axis.horizontal,
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 1,
                       childAspectRatio: 1.0,
                       crossAxisSpacing: 1.0,
                       mainAxisSpacing: 1.0,
                     ),
                     itemCount: 10,
-                    itemBuilder: (context,index){
+                    itemBuilder: (context, index) {
                       return GestureDetector(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>ProductDet()));
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ProductDet()));
                         },
                         child: Container(
-                          decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/60b6980613b92e7b9913f40d32a59bc7.jpg"))),
+                          decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                      "assets/60b6980613b92e7b9913f40d32a59bc7.jpg"),fit: BoxFit.cover)),
                         ),
                       );
                     }),
@@ -184,6 +236,10 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(onPressed: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>const CreateDesign()));
+      },
+      child: const Icon(Icons.add_circle,color: Colors.pink,size: 40,),),
 
       // body:  Padding(
       //   padding: const EdgeInsets.all(20),

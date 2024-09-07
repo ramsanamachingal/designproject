@@ -14,12 +14,12 @@ class _ShDesignerProfileState extends State<ShDesignerProfile> {
     return Scaffold(
       appBar: AppBar(leading: IconButton(onPressed: (){
         Navigator.pop(context);
-      }, icon: Icon(Icons.arrow_back_ios_new,color: Colors.pink,)),
-      bottom: PreferredSize(preferredSize: Size.fromHeight(20), child: Divider(color: Colors.pink,)),),
+      }, icon: const Icon(Icons.arrow_back_ios_new,color: Colors.pink,)),
+      bottom: const PreferredSize(preferredSize: Size.fromHeight(20), child: Divider(color: Colors.pink,)),),
       body: Center(
         child: Column(
           children: [
-            CircleAvatar(
+            const CircleAvatar(
               radius: 100,
               backgroundImage:
                   AssetImage('assets/fd3204f6a96131bfc87294db5118dd36.jpg'),
@@ -33,15 +33,15 @@ class _ShDesignerProfileState extends State<ShDesignerProfile> {
               style: GoogleFonts.pacifico(fontSize: 25, color: Colors.pink),
             ),
 
-            DefaultTabController(length: 3, child: TabBar(tabs: [
+            const DefaultTabController(length: 3, child: TabBar(tabs: [
               Tab(icon: Icon(Icons.image,color: Colors.pink,),),
               Tab(icon: Icon(Icons.videocam_rounded,),),
               Tab(icon: Icon(Icons.person,),)
             ])),TabBarView(children: [
-              GridView.builder(gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 3), itemBuilder: (context,index){
+              GridView.builder(gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 3), itemBuilder: (context,index){
                 return Container(
                   height: 70,width: 150,
-                  decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/07e9ed3375cbffee32362548148529b3.jpg"))),
+                  decoration: const BoxDecoration(image: DecorationImage(image: AssetImage("assets/07e9ed3375cbffee32362548148529b3.jpg"))),
                 );
               })
             ])

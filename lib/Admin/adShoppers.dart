@@ -1,37 +1,33 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:login/Admin/AddDesigner.dart';
-import 'package:login/Admin/adShoppers.dart';
-import 'package:login/Service/clsDesigner.dart';
-Designer dsgn=Designer();
+import 'package:login/Admin/AddShop.dart';
+import 'package:login/Admin/Adhome.dart';
+import 'package:login/Service/clsshop.dart';
 FirebaseFirestore fire=FirebaseFirestore.instance;
-class Adhome extends StatefulWidget {
-  const Adhome({super.key});
+Shop shop=Shop();
+class AdminShoppers extends StatefulWidget {
+  const AdminShoppers({super.key});
 
   @override
-  State<Adhome> createState() => _AdhomeState();
+  State<AdminShoppers> createState() => _AdminShoppersState();
 }
-Designer d=Designer();
 
-File? selectedImage;
-
-class _AdhomeState extends State<Adhome> {
-  final dsgnrnameController=TextEditingController();
-  final dsgnrimagecontroller=TextEditingController();
-  final dsgnrshopnamecontroller=TextEditingController();
-  final dsgnrphonecontroller=TextEditingController();
-  String image='';
-  //d.designersView(dsgnrnameController.text, dsgnrphonecontroller, dsgnrshopnamecontroller, dsgnrimagecontroller);
-
+class _AdminShoppersState extends State<AdminShoppers> {
+  final shopnameController=TextEditingController();
+  final shopaddressController=TextEditingController();
+  final shopphoneController=TextEditingController();
+  final shopimageController=TextEditingController();
+   String? imageURL;
+   File? selectedImage;
   @override
   Widget build(BuildContext context) {
-    Future<void> _pickedImageGallery() async {
+     Future<void> _pickedImageGallery() async {
       final pickedImage =
           await ImagePicker().pickImage(source: ImageSource.gallery);
       if (pickedImage == null) return;
@@ -41,37 +37,13 @@ class _AdhomeState extends State<Adhome> {
     }
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu,color: Colors.pink,)),
-        // bottom: const TabBar(
-        //   tabs: [
-        //     Tab(
-        //       child: Text("Designers"),
-        //     ),
-        //     Tab(
-        //       child: Text("Shop"),
-        //     ),
-        //   ],
-        //   indicatorColor: Colors.pink,
-        //   indicatorSize: TabBarIndicatorSize.tab,
-        // ),
+        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
       ),
       body: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ElevatedButton(
-                  style: ButtonStyle(
-                      shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(7),
-                          side: const BorderSide(color: Colors.white))),
-                      backgroundColor:
-                          const MaterialStatePropertyAll(Colors.pink)),
-                  onPressed: () {},
-                  child: Text(
-                    "Designers",
-                    style: GoogleFonts.pacifico(color: Colors.white),
-                  )),
               ElevatedButton(
                   style: ButtonStyle(
                       shape: MaterialStatePropertyAll(RoundedRectangleBorder(
@@ -83,30 +55,38 @@ class _AdhomeState extends State<Adhome> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const AdminShoppers()));
+                            builder: (context) => const Adhome()));
                   },
                   child: Text(
-                    "Shoppers",
+                    "Designers",
                     style: GoogleFonts.pacifico(color: Colors.pink),
+                  )),
+              ElevatedButton(
+                  style: ButtonStyle(
+                      shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(7),
+                          side: const BorderSide(color: Colors.white))),
+                      backgroundColor:
+                          const MaterialStatePropertyAll(Colors.pink)),
+                  onPressed: () {},
+                  child: Text(
+                    "Shoppers",
+                    style: GoogleFonts.pacifico(color: Colors.white),
                   )),
             ],
           ),
-          StreamBuilder(
-            stream: fire.collection("Designer").snapshots(),
-            builder: (context,snapshot){
-              if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+          StreamBuilder(stream: fire.collection("shop").snapshots(),
+          builder: (context, snapshot) {
+             if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
             return const Center(child: Text('No user profiles found'));
-              }
-              final alldesigner=snapshot.data!.docs;
-            return Expanded(
+          }
+          final allshop=snapshot.data!.docs;
+           return Expanded(
               child: ListView.builder(
-                  itemCount: alldesigner.length,
+                  itemCount: allshop.length,
                   itemBuilder: (context, index) {
-                    final onedsgnr=alldesigner[index].data() as Map<String,dynamic>;
-                    //String image=onedsgnr[Image];
-                    print(onedsgnr.values);
-                    print('kkkkkkkkkkkkkkkkkkkkkk');
-                    final dsgnrid=alldesigner[index].id;
+                    final oneshop=allshop[index].data() as Map<String,dynamic>;
+                    final shopid=allshop[index].id;
                     return Container(
                       height: 270,
                       width: 170,
@@ -119,22 +99,18 @@ class _AdhomeState extends State<Adhome> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              onedsgnr['Designer name:'].toString(),
+                              oneshop['Shop name:'],
                               style: GoogleFonts.pacifico(
                                   color: Colors.pink, fontSize: 25),
                             ),
-                             
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Row(
                                 children: [
-                                   CircleAvatar(
-                                    backgroundImage:
-                                    image == ''
-                                  ? AssetImage("assets/image.png")
-                                  : NetworkImage(image) as ImageProvider,
+                                  const CircleAvatar(
+                                    backgroundImage: AssetImage(
+                                        "assets/49595cfbc79f547e6dfa611aad355745.jpg"),
                                     radius: 60,
-
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
@@ -143,12 +119,12 @@ class _AdhomeState extends State<Adhome> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          onedsgnr['Shop name'].toString(),
+                                          oneshop['shop address'],
                                           style: GoogleFonts.pacifico(
                                               color: Colors.pink),
                                         ),
                                         Text(
-                                          onedsgnr['phone number'].toString(),
+                                          oneshop['phone number'],
                                           style: GoogleFonts.pacifico(
                                               color: Colors.pink),
                                         ),
@@ -177,7 +153,7 @@ class _AdhomeState extends State<Adhome> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  const AddDesigner()));
+                                                  const AdminShoppers()));
                                     },
                                     child: Text(
                                       "Edit",
@@ -196,7 +172,7 @@ class _AdhomeState extends State<Adhome> {
                                             const MaterialStatePropertyAll(
                                                 Colors.pink)),
                                     onPressed: () {
-                                     dsgn.deleteDesigner(dsgnrid);
+                                     shop.deleteshop(shopid);
                                     },
                                     child: Text(
                                       "Delete",
@@ -210,13 +186,18 @@ class _AdhomeState extends State<Adhome> {
                       ),
                     );
                   }),
-            );}
-              
-  )
+            );
+
+
+          },
+           
+          )
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context)=>AddDesigner()));
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => AddShop()));
         },
         child: const Icon(
           Icons.add_circle_outline,
@@ -224,25 +205,6 @@ class _AdhomeState extends State<Adhome> {
           size: 35,
         ),
       ),
-      // TabBarView(children: [
-      //   designers(),
-      //   shoppers(),
-      // ],)
     );
   }
 }
-
-// designers() {
-//   ListView.builder(itemBuilder: (builder, context) {
-//     return const ListTile(
-//       leading: CircleAvatar(
-//         backgroundImage:
-//             AssetImage("assets/07e9ed3375cbffee32362548148529b3.jpg"),
-//       ),
-
-//     );
-//   });
-// }
-// shoppers(){
-
-// }

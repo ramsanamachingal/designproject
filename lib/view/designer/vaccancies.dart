@@ -42,7 +42,7 @@ class _VaccanciesState extends State<Vaccancies> {
                                               "assets/49595cfbc79f547e6dfa611aad355745.jpg"),
                                           fit: BoxFit.cover)),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 15,
                                 ),
                                 Padding(
@@ -51,7 +51,7 @@ class _VaccanciesState extends State<Vaccancies> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 10,
                                       ),
                                       Text("MAX Fashion",
@@ -85,23 +85,23 @@ class _VaccanciesState extends State<Vaccancies> {
                                   backgroundColor: Colors.pink,
                                   child: IconButton(
                                       onPressed: () {},
-                                      icon: Icon(
+                                      icon: const Icon(
                                         Icons.call,
                                         color: Colors.white,
                                       )),
                                 ),
-                                SizedBox(width: 10,),
+                                const SizedBox(width: 10,),
                                  CircleAvatar(
                                   radius: 20,
                                   backgroundColor: Colors.pink,
                                   child: IconButton(
                                       onPressed: () {},
-                                      icon: Icon(
+                                      icon: const Icon(
                                         Icons.chat_rounded,
                                         color: Colors.white,
                                       )),
                                 ),
-                                SizedBox(width: 50,),
+                                const SizedBox(width: 50,),
                                  ElevatedButton(
                                 style: ButtonStyle(
                                     shape: MaterialStatePropertyAll(

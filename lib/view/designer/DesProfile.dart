@@ -1,6 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:login/view/designer/Descontact.dart';
+import 'package:login/view/designer/Postupload.dart';
+import 'package:login/view/designer/VideoUpload.dart';
+
 
 class ProfileDesigner extends StatefulWidget {
   const ProfileDesigner({super.key});
@@ -13,10 +18,11 @@ class _ProfileDesignerState extends State<ProfileDesigner> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: DefaultTabController(
+        length: 3,
         child: Column(
           children: [
-            CircleAvatar(
+            const CircleAvatar(
               radius: 100,
               backgroundImage:
                   AssetImage('assets/fd3204f6a96131bfc87294db5118dd36.jpg'),
@@ -29,19 +35,33 @@ class _ProfileDesignerState extends State<ProfileDesigner> {
               "7907048476",
               style: GoogleFonts.pacifico(fontSize: 25, color: Colors.pink),
             ),
-
-            DefaultTabController(length: 3, child: TabBar(tabs: [
-              Tab(icon: Icon(Icons.image,color: Colors.pink,),),
-              Tab(icon: Icon(Icons.videocam_rounded,),),
-              Tab(icon: Icon(Icons.person,),)
-            ])),TabBarView(children: [
-              GridView.builder(gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 3), itemBuilder: (context,index){
-                return Container(
-                  height: 70,width: 150,
-                  decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/07e9ed3375cbffee32362548148529b3.jpg"))),
-                );
-              })
-            ])
+            const TabBar(tabs: [
+              Tab(
+                icon: Icon(
+                  Icons.image,
+                  color: Colors.pink,
+                ),
+              ),
+              Tab(
+                icon: Icon(
+                  Icons.videocam_rounded,
+                ),
+              ),
+              Tab(
+                icon: Icon(
+                  Icons.person,
+                ),
+              )
+            ]),
+            const Expanded(
+                child: TabBarView(
+                    children: [
+                      PostUpload(), 
+                      VideoUpload(),
+                       DesignerContact()
+                       ]
+                       )
+                       )
           ],
         ),
       ),

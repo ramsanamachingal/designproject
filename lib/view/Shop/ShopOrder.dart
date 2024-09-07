@@ -43,7 +43,7 @@ class _ShopOrderState extends State<ShopOrder> {
                                               "assets/60b6980613b92e7b9913f40d32a59bc7.jpg"),
                                           fit: BoxFit.cover)),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 15,
                                 ),
                                 Padding(
@@ -60,7 +60,7 @@ class _ShopOrderState extends State<ShopOrder> {
                                                 color: Colors.pink,
                                                 fontSize: 20),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 10,
                                           ),
                                           Text(
@@ -69,7 +69,7 @@ class _ShopOrderState extends State<ShopOrder> {
                                                 color: Colors.black,
                                                 fontSize: 15),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 10,
                                           ),
                                           Text(
@@ -78,7 +78,7 @@ class _ShopOrderState extends State<ShopOrder> {
                                                 color: Colors.pink,
                                                 fontSize: 20),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 10,
                                           ),
                                           Text(
@@ -91,7 +91,7 @@ class _ShopOrderState extends State<ShopOrder> {
                                       ),
                                      
                                       
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 10,
                                       ),
                                       Text(
@@ -100,7 +100,7 @@ class _ShopOrderState extends State<ShopOrder> {
                                             color: Colors.black,
                                             fontSize: 15),
                                       ),
-                                      SizedBox(height: 40,),
+                                      const SizedBox(height: 40,),
                                       Center(
                                         child: Padding(
                                           padding: const EdgeInsets.only(left: 30),

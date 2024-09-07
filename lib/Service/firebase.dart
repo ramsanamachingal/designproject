@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:login/view/first/otpScreen.dart';
+import 'package:login/view/Auth/otpScreen.dart';
 import 'package:login/view/user/home.dart';
 
 class FirebaseService{

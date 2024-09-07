@@ -17,13 +17,13 @@ class _ShopHomeState extends State<ShopHome> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {},
-          icon: Icon(
+          icon: const Icon(
             Icons.menu,
             color: Colors.pink,
           ),
         ),
         title:  Text("Home", style: GoogleFonts.pacifico(color: Colors.pink, fontSize: 25),),
-        bottom: PreferredSize(
+        bottom: const PreferredSize(
             preferredSize: Size.fromHeight(20),
             child: Divider(
               color: Colors.pink,
@@ -96,7 +96,7 @@ class _ShopHomeState extends State<ShopHome> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => ShDesignerProduct()));
+                                    builder: (context) => const ShDesignerProduct()));
                           },
                           child: Container(
                             decoration: const BoxDecoration(
@@ -110,21 +110,21 @@ class _ShopHomeState extends State<ShopHome> {
                       }),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Text(
                 "Shoppers Product",
                 style: GoogleFonts.pacifico(color: Colors.pink, fontSize: 25),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Container(
                 height: 200,
                 child: GridView.builder(
                     scrollDirection: Axis.horizontal,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 1,
                       childAspectRatio: 1.0,
                       crossAxisSpacing: 1.0,
@@ -137,10 +137,10 @@ class _ShopHomeState extends State<ShopHome> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => ShProductDetail()));
+                                  builder: (context) => const ShProductDetail()));
                         },
                         child: Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               image: DecorationImage(
                                   image: AssetImage(
                                       "assets/60b6980613b92e7b9913f40d32a59bc7.jpg"))),

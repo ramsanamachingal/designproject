@@ -23,7 +23,7 @@ class _DesignerBottomState extends State<DesignerBottom> {
  final _pages=[
     
     const DesignerHome(),
-    const DesignerUpload(),
+    
     const OrderProduct(),
     const ProfileDesigner()
     
@@ -64,8 +64,7 @@ Widget mynav({
     items: [
       BottomNavigationBarItem(icon: const Icon(Icons.home),label: "Home",
       backgroundColor: Colors.grey[850],),
-       BottomNavigationBarItem(icon: const Icon(Icons.file_upload_rounded),label: "Upload",
-      backgroundColor: Colors.grey[850],),
+      
        BottomNavigationBarItem(icon: const Icon(Icons.pending_actions_outlined),label: "Order",
       backgroundColor: Colors.grey[850],),
        BottomNavigationBarItem(icon: const Icon(Icons.person),label: "Profile",

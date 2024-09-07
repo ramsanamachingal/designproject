@@ -1,25 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:login/Admin/Adhome.dart';
 import 'package:login/firebase_options.dart';
-import 'package:login/view/Shop/ShopHome.dart';
-import 'package:login/view/Shop/request.dart';
-import 'package:login/view/Shop/shopPrrofile.dart';
-import 'package:login/view/Shop/shopUpload.dart';
-import 'package:login/view/designer/DesProfile.dart';
-import 'package:login/view/designer/deshom.dart';
-import 'package:login/view/designer/order.dart';
-import 'package:login/view/designer/upload.dart';
-import 'package:login/view/designer/vaccancies.dart';
-import 'package:login/view/function.dart/des_bottom.dart';
-import 'package:login/view/function.dart/shop_bottom.dart';
-import 'package:login/view/user/create.dart';
-import 'package:login/view/first/login.dart';
-import 'package:login/view/first/page1.dart';
+import 'package:login/test/samplemodel.dart';
+import 'package:login/view/Auth/page1.dart';
 
-import 'package:login/view/first/signup.dart';
-import 'package:login/view/user/designers.dart';
-import 'package:login/view/user/profile.dart';
+import 'package:login/view/function.dart/des_bottom.dart';
+
 
 Future <void> main()async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:ShopBottom (indexnum: 0,),
+      home: FirstPage()
     );
   }
 }

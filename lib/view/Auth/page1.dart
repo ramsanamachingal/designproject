@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:login/view/first/login.dart';
-import 'package:login/view/first/signup.dart';
+import 'package:login/view/Auth/login.dart';
+import 'package:login/view/Auth/signup.dart';
 
 class FirstPage extends StatefulWidget {
   const FirstPage({super.key});
@@ -38,12 +38,12 @@ class _FirstPageState extends State<FirstPage> {
                           shape: MaterialStatePropertyAll(
                               RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(7),
-                                  side: BorderSide(color: Colors.white))),
-                          backgroundColor: MaterialStatePropertyAll(
-                              const Color.fromARGB(255, 252, 158, 189))),
-                                          onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));},
+                                  side: const BorderSide(color: Colors.white))),
+                          backgroundColor: const MaterialStatePropertyAll(
+                              Color.fromARGB(255, 252, 158, 189))),
+                                          onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context)=>const Login()));},
                                           child:  Text("Login",style:GoogleFonts.inknutAntiqua(color:Colors.white),))),
-                                          SizedBox(height: 30,),
+                                          const SizedBox(height: 30,),
                                     SizedBox(
                                       height: 40,
                                       width: 240,
@@ -52,10 +52,10 @@ class _FirstPageState extends State<FirstPage> {
                           shape: MaterialStatePropertyAll(
                               RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(7),
-                                  side: BorderSide(color: Colors.white))),
-                          backgroundColor: MaterialStatePropertyAll(
-                              const Color.fromARGB(255, 252, 158, 189))),
-                                          onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context)=>SignUp()));},
+                                  side: const BorderSide(color: Colors.white))),
+                          backgroundColor: const MaterialStatePropertyAll(
+                              Color.fromARGB(255, 252, 158, 189))),
+                                          onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context)=>const SignUp()));},
                                           child:  Text("Sign Up",style:GoogleFonts.inknutAntiqua(color:Colors.white),))),      
 
                         ],

@@ -15,13 +15,13 @@ class _ShopUploadState extends State<ShopUpload> {
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.menu,
               color: Colors.pink,
             )),
         title: Text("Upload product",
             style: GoogleFonts.pacifico(color: Colors.pink, fontSize: 20)),
-        bottom: PreferredSize(
+        bottom: const PreferredSize(
             preferredSize: Size.fromHeight(20),
             child: Divider(
               color: Colors.pink,
@@ -87,7 +87,7 @@ class _ShopUploadState extends State<ShopUpload> {
               Text("Available Size",
                   style:
                       GoogleFonts.pacifico(color: Colors.pink, fontSize: 20)),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               // ignore: prefer_const_constructors
@@ -205,7 +205,7 @@ class _ShopUploadState extends State<ShopUpload> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Row(
@@ -218,10 +218,10 @@ class _ShopUploadState extends State<ShopUpload> {
                         border: Border.all(color: Colors.pink),
                         borderRadius: BorderRadius.circular(50)),
                   ),
-                  SizedBox(width: 20,),
+                  const SizedBox(width: 20,),
                   Text("Post",style: GoogleFonts.pacifico(
                             color: Colors.pink, fontSize: 20)),
-                            SizedBox(width: 10,),
+                            const SizedBox(width: 10,),
                              Container(
                     height: 20,
                     width: 20,
@@ -229,7 +229,7 @@ class _ShopUploadState extends State<ShopUpload> {
                         border: Border.all(color: Colors.pink),
                         borderRadius: BorderRadius.circular(50)),
                   ),
-                  SizedBox(width: 20,),
+                  const SizedBox(width: 20,),
                   Text("Reel",style: GoogleFonts.pacifico(
                             color: Colors.pink, fontSize: 20))
                 ],

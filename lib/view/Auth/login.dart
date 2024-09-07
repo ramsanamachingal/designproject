@@ -2,9 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:login/Service/firebase.dart';
-import 'package:login/view/first/foget.dart';
+
 import 'package:login/view/function.dart/style.dart';
-import 'package:login/view/user/home.dart';
+
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -54,13 +54,7 @@ class _LoginState extends State<Login> {
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Please enter the email";
-                        // showDialog(
-                        //     context: context,
-                        //     builder: (BuildContext context) {
-                        //       return AlertDialog(
-                        //         title: Text("Please enter the email"),
-                        //       );
-                        //     });
+                        
                       } else {
                         return null;
                       }
@@ -95,7 +89,7 @@ class _LoginState extends State<Login> {
                     child: TextButton(
                         onPressed: () {
                           obj1.forgetPassword(_emailcontroller.text);
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>const ForgetPassword()));
+                          //Navigator.push(context, MaterialPageRoute(builder: (context)=>const ForgetPassword()));
                         },
                         child: Text(
                           "Foget Password?",
@@ -120,10 +114,7 @@ class _LoginState extends State<Login> {
                                 Color.fromARGB(255, 252, 158, 189))),
                         onPressed: () {
                           logIn();
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>  packages(indexnum: 0)));
+                         
                         },
                         child: Text(
                           'Login',
@@ -148,6 +139,10 @@ class _LoginState extends State<Login> {
     User? user = await obj1.signinWithEmailAndPassword(a, b);
     if (user != null) {
       print("login successfully");
+       Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>  packages(indexnum: 0)));
     } else {
       print("incorrect email and password");
     }
