@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:login/Admin/AddShop.dart';
@@ -23,7 +23,7 @@ class _AdminShoppersState extends State<AdminShoppers> {
   final shopaddressController=TextEditingController();
   final shopphoneController=TextEditingController();
   final shopimageController=TextEditingController();
-   String? imageURL;
+  String image = '';
    File? selectedImage;
   @override
   Widget build(BuildContext context) {
@@ -36,45 +36,10 @@ class _AdminShoppersState extends State<AdminShoppers> {
       });
     }
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
-      ),
+     
       body: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                  style: ButtonStyle(
-                      shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(7),
-                          side: const BorderSide(color: Colors.pink))),
-                      backgroundColor:
-                          const MaterialStatePropertyAll(Colors.white)),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Adhome()));
-                  },
-                  child: Text(
-                    "Designers",
-                    style: GoogleFonts.pacifico(color: Colors.pink),
-                  )),
-              ElevatedButton(
-                  style: ButtonStyle(
-                      shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(7),
-                          side: const BorderSide(color: Colors.white))),
-                      backgroundColor:
-                          const MaterialStatePropertyAll(Colors.pink)),
-                  onPressed: () {},
-                  child: Text(
-                    "Shoppers",
-                    style: GoogleFonts.pacifico(color: Colors.white),
-                  )),
-            ],
-          ),
+        
           StreamBuilder(stream: fire.collection("shop").snapshots(),
           builder: (context, snapshot) {
              if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
@@ -87,6 +52,7 @@ class _AdminShoppersState extends State<AdminShoppers> {
                   itemBuilder: (context, index) {
                     final oneshop=allshop[index].data() as Map<String,dynamic>;
                     final shopid=allshop[index].id;
+                    final String imageURL=oneshop['image'] ??'';
                     return Container(
                       height: 270,
                       width: 170,
@@ -99,7 +65,7 @@ class _AdminShoppersState extends State<AdminShoppers> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              oneshop['Shop name:'],
+                              oneshop['Shop name:'].toString(),
                               style: GoogleFonts.pacifico(
                                   color: Colors.pink, fontSize: 25),
                             ),
@@ -107,10 +73,13 @@ class _AdminShoppersState extends State<AdminShoppers> {
                               padding: const EdgeInsets.all(8.0),
                               child: Row(
                                 children: [
-                                  const CircleAvatar(
-                                    backgroundImage: AssetImage(
-                                        "assets/49595cfbc79f547e6dfa611aad355745.jpg"),
-                                    radius: 60,
+                                   CircleAvatar(
+                                    backgroundImage: imageURL ==''
+                                   ? AssetImage(
+                                        "assets/49595cfbc79f547e6dfa611aad355745.jpg")
+                                        as ImageProvider:
+                                        NetworkImage(imageURL),
+                                    radius: 40,
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
@@ -119,12 +88,12 @@ class _AdminShoppersState extends State<AdminShoppers> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          oneshop['shop address'],
+                                          oneshop['shop address'].toString(),
                                           style: GoogleFonts.pacifico(
                                               color: Colors.pink),
                                         ),
                                         Text(
-                                          oneshop['phone number'],
+                                          oneshop['phone number'].toString(),
                                           style: GoogleFonts.pacifico(
                                               color: Colors.pink),
                                         ),
@@ -134,6 +103,16 @@ class _AdminShoppersState extends State<AdminShoppers> {
                                 ],
                               ),
                             ),
+                             Text(
+                                          oneshop['Email'].toString(),
+                                          style: GoogleFonts.pacifico(
+                                              color: Colors.pink),
+                                        ),
+                                         Text(
+                                          oneshop['Password'].toString(),
+                                          style: GoogleFonts.pacifico(
+                                              color: Colors.pink),
+                                        ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:login/Service/firebase.dart';
-import 'package:login/view/Auth/otpScreen.dart';
+
 
 class PhoneNumberScreen extends StatefulWidget {
   const PhoneNumberScreen({super.key});

@@ -5,11 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:login/view/designer/DesProfile.dart';
 import 'package:login/view/designer/deshom.dart';
 import 'package:login/view/designer/order.dart';
-import 'package:login/view/designer/upload.dart';
 
-import 'package:login/view/user/designers.dart';
-import 'package:login/view/user/home.dart';
-import 'package:login/view/user/profile.dart';
 
 class DesignerBottom extends StatefulWidget {
    int indexnum=0;

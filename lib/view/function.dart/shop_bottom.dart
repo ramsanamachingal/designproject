@@ -6,14 +6,7 @@ import 'package:login/view/Shop/ShopHome.dart';
 import 'package:login/view/Shop/request.dart';
 import 'package:login/view/Shop/shopPrrofile.dart';
 import 'package:login/view/Shop/shopUpload.dart';
-import 'package:login/view/designer/DesProfile.dart';
-import 'package:login/view/designer/deshom.dart';
-import 'package:login/view/designer/order.dart';
-import 'package:login/view/designer/upload.dart';
 
-import 'package:login/view/user/designers.dart';
-import 'package:login/view/user/home.dart';
-import 'package:login/view/user/profile.dart';
 
 class ShopBottom extends StatefulWidget {
    int indexnum=0;

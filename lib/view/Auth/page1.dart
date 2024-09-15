@@ -23,47 +23,66 @@ class _FirstPageState extends State<FirstPage> {
                 image: DecorationImage(image: AssetImage("assets/image.png"))),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 150,left: 40),
-            child: Text("welcome to fashion boutique",style: GoogleFonts.pacifico(color:Colors.black,fontSize:35),),
+            padding: const EdgeInsets.only(top: 150, left: 40),
+            child: Text(
+              "welcome to fashion boutique",
+              style: GoogleFonts.pacifico(color: Colors.black, fontSize: 35),
+            ),
           ),
-                    Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                                      height: 40,
-                                      width: 240,
-                                      child: ElevatedButton(
-                                          style: ButtonStyle(
-                          shape: MaterialStatePropertyAll(
-                              RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(7),
-                                  side: const BorderSide(color: Colors.white))),
-                          backgroundColor: const MaterialStatePropertyAll(
-                              Color.fromARGB(255, 252, 158, 189))),
-                                          onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context)=>const Login()));},
-                                          child:  Text("Login",style:GoogleFonts.inknutAntiqua(color:Colors.white),))),
-                                          const SizedBox(height: 30,),
-                                    SizedBox(
-                                      height: 40,
-                                      width: 240,
-                                      child: ElevatedButton(
-                                          style: ButtonStyle(
-                          shape: MaterialStatePropertyAll(
-                              RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(7),
-                                  side: const BorderSide(color: Colors.white))),
-                          backgroundColor: const MaterialStatePropertyAll(
-                              Color.fromARGB(255, 252, 158, 189))),
-                                          onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context)=>const SignUp()));},
-                                          child:  Text("Sign Up",style:GoogleFonts.inknutAntiqua(color:Colors.white),))),      
-
-                        ],
-
-
-                      ),
-                    )
-         
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                    height: 40,
+                    width: 240,
+                    child: ElevatedButton(
+                        style: ButtonStyle(
+                            shape: MaterialStatePropertyAll(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(7),
+                                    side:
+                                        const BorderSide(color: Colors.white))),
+                            backgroundColor: const MaterialStatePropertyAll(
+                                Color.fromARGB(255, 252, 158, 189))),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Login()));
+                        },
+                        child: Text(
+                          "Login",
+                          style: GoogleFonts.inknutAntiqua(color: Colors.white),
+                        ))),
+                const SizedBox(
+                  height: 30,
+                ),
+                SizedBox(
+                    height: 40,
+                    width: 240,
+                    child: ElevatedButton(
+                        style: ButtonStyle(
+                            shape: MaterialStatePropertyAll(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(7),
+                                    side:
+                                        const BorderSide(color: Colors.white))),
+                            backgroundColor: const MaterialStatePropertyAll(
+                                Color.fromARGB(255, 252, 158, 189))),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const SignUp()));
+                        },
+                        child: Text(
+                          "Sign Up",
+                          style: GoogleFonts.inknutAntiqua(color: Colors.white),
+                        ))),
+              ],
+            ),
+          )
         ],
       ),
     );
