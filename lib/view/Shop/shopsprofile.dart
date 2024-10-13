@@ -1,22 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ShDesignerProfile extends StatefulWidget {
-  final String
-      userId; 
-  const ShDesignerProfile({super.key, required this.userId});
+class ManyShopsProfile extends StatefulWidget {
+  final String userId;
+  const ManyShopsProfile({super.key, required this.userId});
 
   @override
-  State<ShDesignerProfile> createState() => _ShDesignerProfileState();
+  State<ManyShopsProfile> createState() => _ManyShopsProfileState();
 }
 
-class _ShDesignerProfileState extends State<ShDesignerProfile> {
+class _ManyShopsProfileState extends State<ManyShopsProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
@@ -137,13 +135,13 @@ class _ShDesignerProfileState extends State<ShDesignerProfile> {
         },
       ),
     );
-  }
-
+    
+  } 
   Future<QuerySnapshot<Map<String, dynamic>>> fetchDressData() {
     return FirebaseFirestore.instance
-        .collection('DesignerDress')
+        .collection('ShopDress')
         .doc(widget.userId)
-        .collection('dress')
+        .collection('shdress')
         .get();
       
   }
@@ -151,12 +149,12 @@ class _ShDesignerProfileState extends State<ShDesignerProfile> {
   Future<Map<String, dynamic>> fetchData() async {
     try {
       DocumentSnapshot designerSnapshot = await FirebaseFirestore.instance
-          .collection('Designer')
+          .collection('shop')
           .doc(widget.userId) // Using the userId to get the specific designer
           .get();
       if (designerSnapshot.exists) {
         return {
-          "name": designerSnapshot['Designer name:'],
+          "name": designerSnapshot['Shop name:'],
           "image": designerSnapshot['image'],
           "phone": designerSnapshot['phone number'],
         };
@@ -168,4 +166,5 @@ class _ShDesignerProfileState extends State<ShDesignerProfile> {
       return {}; // Return empty map in case of error
     }
   }
-}
+   
+  }

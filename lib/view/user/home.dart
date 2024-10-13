@@ -117,38 +117,38 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
-                child: Text(
-                  "Offers",
-                  style: GoogleFonts.pacifico(color: Colors.pink, fontSize: 25),
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Container(
-                height: 200,
-                padding: const EdgeInsets.all(8),
-                child: GridView.builder(
-                    scrollDirection: Axis.horizontal,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 1,
-                            childAspectRatio: 1.0,
-                            crossAxisSpacing: 1.0,
-                            mainAxisSpacing: 1.0),
-                    itemCount: 10,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        decoration: const BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage(
-                                    "assets/60b6980613b92e7b9913f40d32a59bc7.jpg"),
-                                fit: BoxFit.cover)),
-                        // child: Center(child: Text("Item $index"),),
-                      );
-                    }),
-              ),
+              // Center(
+              //   child: Text(
+              //     "Offers",
+              //     style: GoogleFonts.pacifico(color: Colors.pink, fontSize: 25),
+              //   ),
+              // ),
+              // const SizedBox(
+              //   height: 20,
+              // ),
+              // Container(
+              //   height: 200,
+              //   padding: const EdgeInsets.all(8),
+              //   child: GridView.builder(
+              //       scrollDirection: Axis.horizontal,
+              //       gridDelegate:
+              //           const SliverGridDelegateWithFixedCrossAxisCount(
+              //               crossAxisCount: 1,
+              //               childAspectRatio: 1.0,
+              //               crossAxisSpacing: 1.0,
+              //               mainAxisSpacing: 1.0),
+              //       itemCount: 10,
+              //       itemBuilder: (context, index) {
+              //         return Container(
+              //           decoration: const BoxDecoration(
+              //               image: DecorationImage(
+              //                   image: AssetImage(
+              //                       "assets/60b6980613b92e7b9913f40d32a59bc7.jpg"),
+              //                   fit: BoxFit.cover)),
+              //           // child: Center(child: Text("Item $index"),),
+              //         );
+              //       }),
+              // ),
               const SizedBox(
                 height: 20,
               ),
@@ -160,7 +160,7 @@ class _HomePageState extends State<HomePage> {
                 height: 20,
               ),
               Container(
-                height: 200,
+                height: 250,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: GridView.builder(
@@ -205,7 +205,7 @@ class _HomePageState extends State<HomePage> {
                 height: 20,
               ),
               Container(
-                height: 200,
+                height: 250,
                 child: GridView.builder(
                     scrollDirection: Axis.horizontal,
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

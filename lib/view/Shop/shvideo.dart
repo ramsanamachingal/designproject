@@ -1,15 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:login/view/designer/upload.dart';
+import 'package:login/view/Shop/shopUpload.dart';
 
-
-class VideoUpload extends StatefulWidget {
-  const VideoUpload({super.key});
+class ShopVideeo extends StatefulWidget {
+  const ShopVideeo({super.key});
 
   @override
-  State<VideoUpload> createState() => _VideoUploadState();
+  State<ShopVideeo> createState() => _ShopVideeoState();
 }
 
-class _VideoUploadState extends State<VideoUpload> {
+class _ShopVideeoState extends State<ShopVideeo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,12 +24,12 @@ class _VideoUploadState extends State<VideoUpload> {
                 decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage(
-                            "assets/35cff69400a0854be6d3e79e11f2da11.jpg"),fit: BoxFit.cover)),
+                            "assets/14d10a90437927d9d2607b6d658c992f.mp4"),fit: BoxFit.cover)),
               );
             }
             ,itemCount: 10,),
       floatingActionButton: FloatingActionButton(onPressed: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>const DesignerUpload()));
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>const ShopUpload()));
       },child: const Icon(Icons.add,color: Colors.pink,),),
     );
   }

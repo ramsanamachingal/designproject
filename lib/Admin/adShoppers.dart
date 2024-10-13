@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:login/Admin/AddShop.dart';
-import 'package:login/Admin/Adhome.dart';
+
 import 'package:login/Service/clsshop.dart';
 FirebaseFirestore fire=FirebaseFirestore.instance;
 Shop shop=Shop();

@@ -1,5 +1,13 @@
+import 'dart:io';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:login/Service/sh_drs.dart';
+import 'package:login/view/Shop/shopPrrofile.dart';
 
 class ShopUpload extends StatefulWidget {
   const ShopUpload({super.key});
@@ -9,6 +17,31 @@ class ShopUpload extends StatefulWidget {
 }
 
 class _ShopUploadState extends State<ShopUpload> {
+  final currentid=FirebaseAuth.instance.currentUser!.uid;
+  FirebaseFirestore fire=FirebaseFirestore.instance;
+  ShopDress drs=ShopDress();
+  final Reference firestorage=FirebaseStorage.instance.ref();
+String uniqueImageName=DateTime.now().microsecondsSinceEpoch.toString();
+String? imageUrl;
+File? selectedImage;
+
+ 
+Future<void>_pickedImageGallery()async{
+  final pickedImage=
+  await ImagePicker().pickImage(source: ImageSource.gallery);
+  if(pickedImage==null)return;
+  setState(() {
+    selectedImage=File(pickedImage.path);
+  });
+  
+}
+final nameController=TextEditingController();
+  final priceController=TextEditingController();
+  final sizeController=TextEditingController();
+  final qtyController=TextEditingController();
+  List<String>tapvalue=[];
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,10 +73,14 @@ class _ShopUploadState extends State<ShopUpload> {
                   width: 350,
                   height: 200,
                   decoration: BoxDecoration(
+                    image: DecorationImage(image: selectedImage!=null
+                    ?FileImage(selectedImage!)
+                    :AssetImage("assets/5ff089db70274bdaa8584427fbb72ec5.jpg")
+                    as ImageProvider,fit: BoxFit.cover),
                     border: Border.all(color: Colors.pink),
                   ),
                   child: IconButton(
-                      onPressed: () {},
+                      onPressed: _pickedImageGallery,
                       icon: const Icon(
                         Icons.add_circle_outline_rounded,
                         color: Colors.pink,
@@ -53,6 +90,33 @@ class _ShopUploadState extends State<ShopUpload> {
               ),
               const SizedBox(
                 height: 20,
+              ),
+               Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Dress name",
+                        style: GoogleFonts.pacifico(
+                            color: Colors.pink, fontSize: 20)),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    SizedBox(
+                      height: 40,
+                      width: 220,
+                      child: TextFormField(
+                        controller: nameController,
+                          style: const TextStyle(color: Colors.black),
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                                borderSide:
+                                    const BorderSide(color: Colors.pink),
+                                borderRadius: BorderRadius.circular(7)),
+                          )),
+                    ),
+                  ],
+                ),
               ),
 
               Padding(
@@ -70,6 +134,7 @@ class _ShopUploadState extends State<ShopUpload> {
                       height: 40,
                       width: 220,
                       child: TextFormField(
+                        controller: priceController,
                           style: const TextStyle(color: Colors.black),
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
@@ -91,91 +156,42 @@ class _ShopUploadState extends State<ShopUpload> {
                 height: 30,
               ),
               // ignore: prefer_const_constructors
-              Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
+              Container(
+                height: 40,
+                width: MediaQuery.of(context).size.width,
+                child: StreamBuilder(stream: fire.collection("size").snapshots(),
+                 builder: (context,snapshot){
+                  final allsize=snapshot.data!.docs;
+                  return ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: allsize.length,
+                    itemBuilder: (context,index){
+                      var itemdata=allsize[index].data() as Map<String,dynamic>;
+                    return Row(
+                      children: [
+                        Container(
                         height: 40,
-                        width: 40,
+                        width: 50,
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.pink)),
-                        child: Center(
-                            child: Text(
-                          "XS",
-                          style: GoogleFonts.pacifico(
-                              color: Colors.pink, fontSize: 20),
-                        )),
+                        child: GestureDetector(
+                          onTap: () {
+                            tapvalue.add(itemdata["Name"].toString());
+                          },
+                          child: Center(
+                              child: Text(
+                            itemdata['Name'],
+                            style: GoogleFonts.pacifico(
+                                color: Colors.pink, fontSize: 20),
+                          )),
+                        ),
                       ),
-                      Container(
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.pink)),
-                        child: Center(
-                            child: Text(
-                          "S",
-                          style: GoogleFonts.pacifico(
-                              color: Colors.pink, fontSize: 20),
-                        )),
-                      ),
-                      Container(
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.pink),
-                            color: Colors.pink),
-                        child: Center(
-                            child: Text(
-                          "M",
-                          style: GoogleFonts.pacifico(
-                              color: Colors.white, fontSize: 20),
-                        )),
-                      ),
-                      Container(
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.pink),
-                            color: Colors.pink),
-                        child: Center(
-                            child: Text(
-                          "L",
-                          style: GoogleFonts.pacifico(
-                              color: Colors.white, fontSize: 20),
-                        )),
-                      ),
-                      Container(
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.pink),
-                            color: Colors.pink),
-                        child: Center(
-                            child: Text(
-                          "XL",
-                          style: GoogleFonts.pacifico(
-                              color: Colors.white, fontSize: 20),
-                        )),
-                      ),
-                      Container(
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.pink)),
-                        child: Center(
-                            child: Text(
-                          "XXL",
-                          style: GoogleFonts.pacifico(
-                              color: Colors.pink, fontSize: 15),
-                        )),
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                    ],
-                  )),
+                      SizedBox(width: 10,)
+                      ],
+                    );
+                  });
+                 }),
+              ),
               const SizedBox(
                 height: 10,
               ),
@@ -194,6 +210,7 @@ class _ShopUploadState extends State<ShopUpload> {
                       height: 40,
                       width: 120,
                       child: TextFormField(
+                        controller: qtyController,
                           style: const TextStyle(color: Colors.black),
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
@@ -208,32 +225,7 @@ class _ShopUploadState extends State<ShopUpload> {
               const SizedBox(
                 height: 20,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    height: 20,
-                    width: 20,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.pink),
-                        borderRadius: BorderRadius.circular(50)),
-                  ),
-                  const SizedBox(width: 20,),
-                  Text("Post",style: GoogleFonts.pacifico(
-                            color: Colors.pink, fontSize: 20)),
-                            const SizedBox(width: 10,),
-                             Container(
-                    height: 20,
-                    width: 20,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.pink),
-                        borderRadius: BorderRadius.circular(50)),
-                  ),
-                  const SizedBox(width: 20,),
-                  Text("Reel",style: GoogleFonts.pacifico(
-                            color: Colors.pink, fontSize: 20))
-                ],
-              ),
+              // 
               const SizedBox(
                 height: 30,
               ),
@@ -249,8 +241,24 @@ class _ShopUploadState extends State<ShopUpload> {
                                   side: const BorderSide(color: Colors.white))),
                           backgroundColor: const MaterialStatePropertyAll(
                               Color.fromARGB(255, 252, 158, 189))),
-                      onPressed: () {
-                        // Navigator.push(context, MaterialPageRoute(builder: (context)=>const BookingPage()));
+                      onPressed: () async {
+                        if(selectedImage!=null){
+                          Reference referenceImageToUpload=firestorage.child(uniqueImageName);
+                          try{
+                            await referenceImageToUpload.putFile(selectedImage!);
+                            imageUrl=await referenceImageToUpload.getDownloadURL();
+                          }
+                          catch(e){
+                            print(e);
+
+                          }
+                        }
+                        drs.shopDressview(currentid, 
+                        imageUrl.toString(), nameController.text,
+                         priceController.text,
+                          qtyController.text,
+                           tapvalue.toString());
+                         Navigator.push(context, MaterialPageRoute(builder: (context)=>const ShopProfile()));
                       },
                       child: Text(
                         "Upload",

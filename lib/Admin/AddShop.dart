@@ -7,7 +7,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:login/Admin/adShoppers.dart';
+import 'package:login/Admin/Adhome.dart';
+
 import 'package:login/Service/clsshop.dart';
 
 Shop shop = Shop();
@@ -105,7 +106,8 @@ class _AddShopState extends State<AddShop> {
                                           ? FileImage(selectedImage!)
                                           : const AssetImage(
                                                   "assets/d3d8df2b75dbf5b93c053bbd85b7882e (1).jpg")
-                                              as ImageProvider<Object>),
+                                              as ImageProvider
+                                              ),
                                   shape: BoxShape.circle,
                                   color: Colors.white),
                               height: 100,
@@ -214,35 +216,53 @@ class _AddShopState extends State<AddShop> {
                         side: const BorderSide(color: Colors.white))),
                     backgroundColor:
                         const MaterialStatePropertyAll(Colors.pink)),
-                onPressed: () async {
-                  if (selectedImage != null) {
-                    Reference referenceImageToUpload =
-                        _fireStorage.child(uniqueImageName);
-                    try {
-                      await referenceImageToUpload.putFile(selectedImage!);
-                      imageURL = await referenceImageToUpload.getDownloadURL();
-                    } catch (e) {
-                      print(e);
-                    }
-                  }
-                  FirebaseAuth.instance.createUserWithEmailAndPassword(
-                      email: shopemailController.text,
-                      password: shoppassswordController.text).then((Credential)async{
-                          String id=Credential.user!.uid;
-                           shop.shopView(
-                      shopnamecontroller.text,
-                      shopphncontroller.text,
-                      shopaddresscontroller.text,
-                      imageURL.toString(),
-                      shopemailController.text,
-                      shoppassswordController.text,id);
-                      });
-                 
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const AdminShoppers()));
-                },
+                        onPressed: () async {
+  // Ensure email and password are trimmed and validated
+  String email = shopemailController.text.trim();
+  String password = shoppassswordController.text;
+
+  if (selectedImage != null) {
+    Reference referenceImageToUpload = _fireStorage.child(uniqueImageName);
+    try {
+      await referenceImageToUpload.putFile(selectedImage!);
+      imageURL = await referenceImageToUpload.getDownloadURL();
+      print("Image uploaded successfully: $imageURL");
+    } catch (e) {
+      print("Error uploading image: $e");
+    }
+  }
+
+  // Validate email format
+  if (email.isEmpty || !RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$').hasMatch(email)) {
+    print("Invalid email format");
+    return;
+  }
+
+  try {
+    UserCredential credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: email, // Use trimmed email
+      password: password
+    );
+    
+    String id = credential.user!.uid;
+    await shop.shopView(
+      shopnamecontroller.text,
+      shopphncontroller.text,
+      shopaddresscontroller.text,
+      imageURL.toString(),
+      email, // Use trimmed email
+      password,
+      id
+    );
+    print("Shop added successfully!");
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const Adhome()));
+  } catch (e) {
+    print("Error adding shop: $e");
+  }
+},
+
+
+              
                 child: Text(
                   "Done",
                   style: GoogleFonts.pacifico(color: Colors.white),

@@ -1,11 +1,19 @@
+
+import 'dart:io';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:login/Service/firebase.dart';
+import 'package:login/Service/usercls.dart';
 
 import 'package:login/view/Auth/phone.dart';
-import 'package:login/view/function.dart/style.dart';
 
+import 'package:login/view/user/edit.dart';
+ UserClass userob=UserClass();
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
 
@@ -14,15 +22,27 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  final _usernameController = TextEditingController();
+  // final _usernameController = TextEditingController();
   final _phoneController = TextEditingController();
-  final _addressController = TextEditingController();
+  // final _addressController = TextEditingController();
   final _newPasswordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+  final _emailController=TextEditingController();
   final _formkey = GlobalKey<FormState>();
+  final FirebaseFirestore fire=FirebaseFirestore.instance;
+  final Reference _fireStorage=FirebaseStorage.instance.ref().child('image');
+  String uniqueImageName=DateTime.now().microsecondsSinceEpoch.toString();
+  String? imageUrl;
+  File? selectedImage;
 
   FirebaseService obj = FirebaseService();
-
+Future<void>_pickedImageGallery()async{
+  final pickedImage=await ImagePicker().pickImage(source: ImageSource.gallery);
+  if(pickedImage==null)return;
+  setState(() {
+    selectedImage=File(pickedImage.path);
+  });
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,24 +64,69 @@ class _SignUpState extends State<SignUp> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    // Container(
+                    //   decoration:  BoxDecoration(image: DecorationImage(
+                    //     image: selectedImage !=null
+                    //     ?FileImage(selectedImage!)
+                    //     :const AssetImage("assets/5ff089db70274bdaa8584427fbb72ec5.jpg")
+                    //     as ImageProvider<Object> ,fit: BoxFit.cover),
+                    //     shape: BoxShape.circle,
+                    //     color: Colors.pink[100]
+                    //     ),
+                    //     height: 100,
+                    //     width: 100,
+                    //     child: Padding(
+                    //       padding: const EdgeInsets.only(left: 60,top: 60),
+                    //       child: IconButton(onPressed: _pickedImageGallery, 
+                    //       icon: const Icon(Icons.camera_alt_rounded,color: Colors.white,)),
+                    //     ),
+                    // ),
+                     const SizedBox(
+                      height: 70,
+                    ),
+                    // TextFormField(
+                    //   controller: _usernameController,
+                    //   autovalidateMode: AutovalidateMode.onUserInteraction,
+                    //   decoration: InputDecoration(
+                    //       border: OutlineInputBorder(
+                    //           borderRadius: BorderRadius.circular(7),
+                    //           borderSide:
+                    //               const BorderSide(color: Colors.black)),
+                    //       hintText: "User name",
+                    //       hintStyle:
+                    //           GoogleFonts.inknutAntiqua(color: Colors.black),
+                    //       prefixIcon: Icon(
+                    //         Icons.person_outline,
+                    //         color: Colors.black.withOpacity(0.5),
+                    //       )),
+                    //   validator: (value) {
+                    //     if (value!.isEmpty) {
+                    //       return "please enter the username";
+                    //     } else {
+                    //       return null;
+                    //     }
+                    //   },
+                    // ),
+                   
+                    // SizedBox(height: 30,),
                     TextFormField(
-                      controller: _usernameController,
+                      controller: _emailController,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(7),
                               borderSide:
                                   const BorderSide(color: Colors.black)),
-                          hintText: "username",
+                          hintText: "E mail",
                           hintStyle:
                               GoogleFonts.inknutAntiqua(color: Colors.black),
                           prefixIcon: Icon(
-                            Icons.person_outline,
+                            Icons.email_outlined,
                             color: Colors.black.withOpacity(0.5),
                           )),
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return "please enter the username";
+                          return "please enter the email";
                         } else {
                           return null;
                         }
@@ -96,32 +161,32 @@ class _SignUpState extends State<SignUp> {
                     const SizedBox(
                       height: 30,
                     ),
-                    TextFormField(
-                      controller: _addressController,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(7),
-                              borderSide:
-                                  const BorderSide(color: Colors.black)),
-                          hintText: "Address",
-                          hintStyle:
-                              GoogleFonts.inknutAntiqua(color: Colors.black),
-                          prefixIcon: Icon(
-                            Icons.place_outlined,
-                            color: Colors.black.withOpacity(0.5),
-                          )),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "please enter the address";
-                        } else {
-                          return null;
-                        }
-                      },
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
+                    // TextFormField(
+                    //   controller: _addressController,
+                    //   autovalidateMode: AutovalidateMode.onUserInteraction,
+                    //   decoration: InputDecoration(
+                    //       border: OutlineInputBorder(
+                    //           borderRadius: BorderRadius.circular(7),
+                    //           borderSide:
+                    //               const BorderSide(color: Colors.black)),
+                    //       hintText: "Address",
+                    //       hintStyle:
+                    //           GoogleFonts.inknutAntiqua(color: Colors.black),
+                    //       prefixIcon: Icon(
+                    //         Icons.place_outlined,
+                    //         color: Colors.black.withOpacity(0.5),
+                    //       )),
+                    //   validator: (value) {
+                    //     if (value!.isEmpty) {
+                    //       return "please enter the address";
+                    //     } else {
+                    //       return null;
+                    //     }
+                    //   },
+                    // ),
+                    // const SizedBox(
+                    //   height: 30,
+                    // ),
                     TextFormField(
                       controller: _newPasswordController,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -183,7 +248,18 @@ class _SignUpState extends State<SignUp> {
                                         const BorderSide(color: Colors.white))),
                             backgroundColor: const MaterialStatePropertyAll(
                                 Color.fromARGB(255, 252, 158, 189))),
-                        onPressed: () {
+                        onPressed: () async{
+                          if(selectedImage !=null){
+                            Reference reference=_fireStorage.child(uniqueImageName);
+                            try{
+                              await reference.putFile(selectedImage!);
+                              imageUrl=await reference.getDownloadURL();
+
+                            }
+                            catch(e){
+                              print(e);
+                            }
+                          }
                           if(_formkey.currentState!.validate()){
                              signUp();
 
@@ -231,7 +307,7 @@ class _SignUpState extends State<SignUp> {
   }
 
   Future signUp() async {
-    String email = _usernameController.text;
+    String email = _emailController.text;
     String password = _newPasswordController.text;
     print(email);
     print(password);
@@ -240,9 +316,13 @@ class _SignUpState extends State<SignUp> {
     if (user != null) {
       print('User is successfully created');
       Navigator.push(context,
-          MaterialPageRoute(builder: (context) => packages(indexnum: 0)));
+          MaterialPageRoute(builder: (context) =>EditProfile()
+          //  packages(indexnum: 0)
+           ));
     } else {
       print('Some error occurred');
     }
+    // String id=credential.user!.uid;
+    // userob.userSample(id, _usernameController.text, _addressController.text, _phoneController.text, _emailController.text, _newPasswordController.text, imageUrl.toString());
   }
 }

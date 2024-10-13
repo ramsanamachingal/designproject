@@ -1,10 +1,8 @@
-import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:login/Admin/AddDesigner.dart';
+
 import 'package:login/Admin/adDesign.dart';
 import 'package:login/Admin/adShoppers.dart';
 import 'package:login/Admin/request.dart';

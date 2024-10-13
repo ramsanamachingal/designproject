@@ -56,7 +56,7 @@ class _SampleState extends State<Sample> {
                       //   obj.deleteUser(userid);
                       // },icon: const Icon(Icons.delete),),
                       IconButton(onPressed: (){
-                        obj.update(userid,nameController.text);
+                        update(userid,nameController.text);
                       }, icon: const Icon(Icons.edit))
                  
                   ),
@@ -97,5 +97,20 @@ class _SampleState extends State<Sample> {
        },
        child: const Icon(Icons.add_circle),),
     );
+  }
+  update(docid,newname){
+    nameController.text=newname;
+     showDialog(context: context, builder: (context){
+      return AlertDialog(
+        content: TextFormField(controller: nameController,
+        decoration: InputDecoration(
+          hintText: "update your name"
+        ),),actions: [TextButton(onPressed: (){
+           FirebaseFirestore.instance.collection("username").doc(docid).update({"name":newname});
+
+        }, child: Text("Update"))],
+      );
+    });
+   
   }
 }

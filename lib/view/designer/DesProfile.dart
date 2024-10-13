@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:login/Admin/adDesign.dart';
+
 import 'package:login/view/designer/Descontact.dart';
 import 'package:login/view/designer/Postupload.dart';
 import 'package:login/view/designer/VideoUpload.dart';
@@ -24,6 +24,7 @@ class _ProfileDesignerState extends State<ProfileDesigner> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //???????????????????????????????
       body: StreamBuilder(
         stream: fire.collection("Designer").snapshots(),
         builder: (context, snapshot) {
@@ -36,6 +37,7 @@ class _ProfileDesignerState extends State<ProfileDesigner> {
                   stream: fire.collection("Designer").doc(currentuid).snapshots(),
 
                   builder: (context, snapshot) {
+                    print(currentuid);
                     final alldsgnr=snapshot.data!;
                     print(alldsgnr.id);
                     print('jhj000000000000000000000000000000000000000000');
@@ -43,21 +45,25 @@ class _ProfileDesignerState extends State<ProfileDesigner> {
                     
                     return  Column(
                       children: [
-                        CircleAvatar(
-                          radius: 100,
-                          backgroundImage: imageUrl == ''
-                                                ? const AssetImage(
-                                                        "assets/7665529cfc9ca78b43a73d3f951d8ca7.jpg")
-                                                    as ImageProvider
-                                                : NetworkImage(imageUrl),
-                              
+                       
+                        Padding(
+                          padding: const EdgeInsets.only(top: 45.0),
+                          child: CircleAvatar(
+                            radius: 60,
+                            backgroundImage: imageUrl == ''
+                                                  ? const AssetImage(
+                                                          "assets/7665529cfc9ca78b43a73d3f951d8ca7.jpg")
+                                                      as ImageProvider
+                                                  : NetworkImage(imageUrl),
+                                
+                          ),
                         ),
                         Text(
                   alldsgnr['Designer name:'],
                   style: GoogleFonts.pacifico(fontSize: 30, color: Colors.pink),
                 ),
                 Text(
-                  "7907048476",
+                  alldsgnr['phone number'],
                   style: GoogleFonts.pacifico(fontSize: 25, color: Colors.pink),
                 ),
                       ],

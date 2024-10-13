@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:login/view/designer/DsgnDrawer.dart';
+// DesignerDrawer drawer=DesignerDrawer();
 class DesignerHome extends StatefulWidget {
   const DesignerHome({super.key});
 
@@ -14,12 +15,12 @@ class _DesignerHomeState extends State<DesignerHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.menu,
-              color: Colors.pink,
-            )),
+        // leading: IconButton(
+        //     onPressed: () {},
+        //     icon: const Icon(
+        //       Icons.menu,
+        //       color: Colors.pink,
+        //     )),
         title: Text(
           "Home",
           style: GoogleFonts.pacifico(color: Colors.pink),
@@ -31,6 +32,7 @@ class _DesignerHomeState extends State<DesignerHome> {
           ),
         ),toolbarHeight: 30,
       ),
+      drawer: DesignerDrawer(),
       body:
       Padding(
         padding: const EdgeInsets.all(8.0),

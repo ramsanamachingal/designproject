@@ -1,5 +1,13 @@
+import 'dart:async';
+import 'dart:io';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:login/Service/reqst.dart';
 import 'package:login/view/Shop/request.dart';
 
 List<String> a = ["All", "Rose", "Catherine", "Roma"];
@@ -12,15 +20,33 @@ class AddRequest extends StatefulWidget {
 }
 
 class _AddRequestState extends State<AddRequest> {
+  RequestJob rqst=RequestJob();
+  FirebaseFirestore fire=FirebaseFirestore.instance;
+  final currentuid=FirebaseAuth.instance.currentUser!.uid;
+  String? imageUrl;
+  File? selectedimage;
+  Future<void>_pickedImageGallery()async{
+    final pickedImage=
+    await ImagePicker().pickImage(source: ImageSource.gallery);
+    if(pickedImage==null)return;
+    setState(() {
+      selectedimage=File(pickedImage.path);
+    });
+  }
+  final Reference firestorage=FirebaseStorage.instance.ref();
+  String uniqueImageName=DateTime.now().microsecondsSinceEpoch.toString();
+  
   String dropvalue = a.first;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
             icon: const Icon(
-              Icons.menu,
+              Icons.cancel,
               color: Colors.pink,
             )),
         title: Text("Request",
@@ -51,12 +77,16 @@ class _AddRequestState extends State<AddRequest> {
                           height: 380,
                           width: 230,
                           decoration: BoxDecoration(
+                            image: DecorationImage(image: selectedimage !=null
+                            ? FileImage(selectedimage!):
+                            AssetImage("assets/5ff089db70274bdaa8584427fbb72ec5.jpg") 
+                            as ImageProvider,fit: BoxFit.cover) ,
                               border: Border.all(color: Colors.pink),
                               borderRadius: BorderRadius.circular(7)),
                           //decoration: const BoxDecoration(image: DecorationImage(image: AssetImage("assets/7665529cfc9ca78b43a73d3f951d8ca7.jpg"))),
                           // color: Colors.pink,
                           child: IconButton(
-                              onPressed: () {},
+                              onPressed: _pickedImageGallery,
                               icon: const Icon(
                                 Icons.add_circle_outline_outlined,
                                 color: Colors.pink,
@@ -81,12 +111,17 @@ class _AddRequestState extends State<AddRequest> {
                                   borderRadius: BorderRadius.circular(7),
                                   borderSide: const BorderSide(color: Colors.pink)),
                               suffixIcon: DropdownButton(
+                                value: dropvalue,
                                   items: a.map((value) {
+                                    
                                     return DropdownMenuItem(
                                         value: value, child: Text(value));
                                   }).toList(),
                                   onChanged: ((value) {
-                                    dropvalue = value!;
+                                    setState(() {
+                                      dropvalue = value!;
+                                    });
+                                    
                                   })),
                             )),
                             const SizedBox(height: 30,),
@@ -101,7 +136,24 @@ class _AddRequestState extends State<AddRequest> {
                                                   color: Colors.white))),
                                       backgroundColor: const MaterialStatePropertyAll(
                                           Colors.pink)),
-                                  onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context)=>const Request()));},
+                                  onPressed: () async{
+                                    if(selectedimage !=null){
+                                      Reference referenceImageToUpload=firestorage.child(uniqueImageName);
+                                      try{
+                                        await referenceImageToUpload.putFile(selectedimage!);
+                                        imageUrl=await referenceImageToUpload.getDownloadURL();
+                                      }
+                                      catch(e){
+                                        print(e);
+
+                                      }
+                                    }
+                                    rqst.requestView(currentuid,
+                                     imageUrl.toString(), dropvalue);
+                                     Navigator.pop(context);
+
+                                    // Navigator.push(context, MaterialPageRoute(builder: (context)=>const Request()));
+                                    },
                                   child: Text(
                                     "Update",
                                     style: GoogleFonts.pacifico(

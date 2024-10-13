@@ -75,6 +75,8 @@ class _DesignersState extends State<Designers> {
                           final String imageUrl =onedsgnr['image'] ??'';
                           final String dsgnrname=onedsgnr['Designer name:']?? '';
                           final String phone=onedsgnr['phone number']??'';
+                          //dsgnr id kittan
+                         
                           return Column(
                             children: [
                               const SizedBox(

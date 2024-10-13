@@ -15,8 +15,6 @@ await f.collection("username").add(b);
   deleteUser(docid ){
     f.collection("username").doc(docid).delete();
   }
-  update(docid,newname){
-    f.collection("username").doc(docid).update({"name":newname});
-  }
+  
   
 }
