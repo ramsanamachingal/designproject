@@ -19,6 +19,7 @@ class ShProductDetail extends StatefulWidget {
 
 class _ShProductDetailState extends State<ShProductDetail> {
   Set<int> selectedIndices = {};
+  String checkit="";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -207,11 +208,12 @@ class _ShProductDetailState extends State<ShProductDetail> {
                                                       Color.fromARGB(
                                                           255, 252, 158, 189))),
                                           onPressed: () {
+                                            checkit="shop";
                                             Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                         ShopPayment(userId: widget.userid, dressId: widget.dressId,)));
+                                                         ShopPayment(userId: widget.userid, dressId: widget.dressId,check: checkit,)));
                                           },
                                           child: Text(
                                             "Payment",

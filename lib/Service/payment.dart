@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:upi_india/upi_india.dart';
 
@@ -40,5 +41,26 @@ class PaymentController with ChangeNotifier {
     return data;
   }
 
+
+FirebaseFirestore fire = FirebaseFirestore.instance;
+ Future<void> paymentSample(
+  String id,
+  String price,
+  String status,
+  String name,
+) async {
+  Map<String, dynamic> pay = {
+    "id": id,
+    "paid to": name,
+    "price": price,
+    "paymentStatus": status,
+    "timestamp": FieldValue.serverTimestamp(), // Add this line
+  };
+  await fire.collection("payment").doc(id).set(pay);
+}
+
+  // Future updatePayment(id) async {
+  //   fire.collection("payment").doc(id).update({"paymentStatus": true});
+  // }
   
 }

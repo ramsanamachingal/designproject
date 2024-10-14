@@ -24,7 +24,7 @@ class ShDesignerProduct extends StatefulWidget {
 
 class _ShDesignerProductState extends State<ShDesignerProduct> {
   
- 
+ String checkit='';
   Set<int> selectedIndices = {};
   @override
   Widget build(BuildContext context) {
@@ -217,7 +217,8 @@ SizedBox(
       ),
     ),
     onPressed: () {
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>ShopPayment(userId : widget.userid,dressId:widget.dressId)));
+      checkit="designer";
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>ShopPayment(userId : widget.userid,dressId:widget.dressId,check:checkit)));
     },
     child: Text(
       "Payment",

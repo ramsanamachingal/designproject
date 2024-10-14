@@ -26,4 +26,8 @@ class UserClass {
     };
     await fire.collection("user").doc(id).set(user);
   }
+  Future updatePayment(id) async {
+    fire.collection("payment").doc(id).update({"paymentStatus": true});
+  }
+
 }
