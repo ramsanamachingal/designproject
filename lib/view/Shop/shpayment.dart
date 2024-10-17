@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:login/Service/payment.dart';
-import 'package:login/view/Shop/ShopHome.dart';
+// import 'package:login/view/Shop/ShopHome.dart';
 import 'package:login/view/function.dart/shop_bottom.dart';
 import 'package:upi_india/upi_exception.dart';
 import 'package:upi_india/upi_response.dart';
@@ -14,10 +14,11 @@ class ShopPayment extends StatefulWidget {
   final String userId;
   final String dressId;
   final String check;
-  const ShopPayment({
-    super.key,
-    required this.userId,
-    required this.dressId, required this.check,
+  final String dressSize;
+  const ShopPayment( {
+    super.key, required this.userId, required this.dressId, required this.check, required this.dressSize,
+    // required this.userId,
+    // required this.dressId, required this.check, required this.dressSize,
   });
 
   @override
@@ -29,7 +30,7 @@ class _ShopPaymentState extends State<ShopPayment> {
   Future<UpiResponse>? transaction;
   String dressPrice = ""; // Variable to hold the dress price
   String designerName = ""; // Variable to hold the designer's name
-  // String shopName ="";
+  String dressImage="";
   // String shopprice="";
 PaymentController paytm=PaymentController();
 
@@ -42,7 +43,8 @@ Map<String, dynamic> designerData = {};
 
     for (var doc in dsgnrname.docs) {
       if (doc.id == widget.userId) {
-        designerName = doc['Designer name:']; // Store the designer's name
+        designerName = doc['Designer name:'];
+      // Store the designer's name
         designerData = {'designername': designerName};
       }
       print(designerData);
@@ -79,6 +81,7 @@ Map<String, dynamic> designerData = {};
       // Check if price exists and is a valid string
       if (docs['price'] != null && docs['price'] is String) {
         dressPrice = docs['price'];
+        dressImage = docs['image'];
         print("Fetched Dress Price: $dressPrice");
       } else {
         dressPrice = "0";  // Handle cases where price is null or invalid
@@ -135,7 +138,9 @@ Map<String, dynamic> designerData = {};
       // Check if price exists and is a valid string
       if (docs['price'] != null && docs['price'] is String) {
         dressPrice = docs['price'];
+         dressImage = docs['image'];
         print("Fetched Dress Price: $dressPrice");
+       
       } else {
         dressPrice = "0";  // Handle cases where price is null or invalid
         print("Price not found, defaulting to 0");
@@ -219,66 +224,70 @@ Widget build(BuildContext context) {
                     itemBuilder: (context, index) {
                       return ListTile(
                         onTap: () async {
-                          if (dressPrice.isEmpty) {
-                            print("Dress price is empty");
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text("Price is missing. Please try again."),
-                                backgroundColor: Colors.red,
-                              ),
-                            );
-                            return;
-                          }
+  if (dressPrice.isEmpty) {
+    print("Dress price is empty");
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text("Price is missing. Please try again."),
+        backgroundColor: Colors.red,
+      ),
+    );
+    return;
+  }
 
-                          double amount = 0.0;
-                          try {
-                            amount = double.parse(dressPrice);
-                            print("Parsed Amount: $amount");
+  double amount = 0.0;
+  try {
+    amount = double.parse(dressPrice);
+    print("Parsed Amount: $amount");
 
-                            if (amount <= 0) {
-                              throw FormatException("Price cannot be zero or negative");
-                            }
-                          } catch (e) {
-                            print("Invalid price format: $e");
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text("Invalid price format. Please try again."),
-                                backgroundColor: Colors.red,
-                              ),
-                            );
-                            return;
-                          }
+    if (amount <= 0) {
+      throw FormatException("Price cannot be zero or negative");
+    }
+  } catch (e) {
+    print("Invalid price format: $e");
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text("Invalid price format. Please try again."),
+        backgroundColor: Colors.red,
+      ),
+    );
+    return;
+  }
 
-                          // Start the UPI transaction
-                          PaymentController().initiateTransaction(
-                            context,
-                            app: snapshot.data![index],
-                            receiverUpiId: recieverUPIID,
-                            receiverName: designerName,  // Use the fetched designer's name
-                            amount: amount,
-                          );
+  // Start the UPI transaction
+  PaymentController().initiateTransaction(
+    context,
+    app: snapshot.data![index],
+    receiverUpiId: recieverUPIID,
+    receiverName: designerName,  // Use the fetched designer's name
+    amount: amount,
+  );
 
-                          // Record payment sample
-                          paytm.paymentSample(currentuid, dressPrice, "true", designerName);
+  // Record payment sample with automatically generated ID
+  await paytm.paymentSample(dressPrice, "true", designerName, currentuid,widget.dressSize,dressImage);
+   print(';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;');
+        // print(dressSize);
+        print('pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp');
 
-                          // Display success dialog
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: const Text("Your transaction completed successfully"),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.push(context, MaterialPageRoute(builder: (context) => ShopBottom(indexnum: 0)));
-                                    },
-                                    child: const Text("OK"),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        },
+  // Display success dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text("Your transaction completed successfully"),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ShopBottom(indexnum: 0)));
+            },
+            child: const Text("OK"),
+          ),
+        ],
+      );
+    },
+  );
+},
+
                         leading: Image.memory(snapshot.data![index].icon),
                         title: Text(
                           snapshot.data![index].name,

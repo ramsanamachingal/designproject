@@ -20,6 +20,7 @@ class ShProductDetail extends StatefulWidget {
 class _ShProductDetailState extends State<ShProductDetail> {
   Set<int> selectedIndices = {};
   String checkit="";
+  String selectedSize="";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -160,6 +161,9 @@ class _ShProductDetailState extends State<ShProductDetail> {
                                           }
                                           print(
                                               "Selected size: ${availablesize[index]}");
+                                              print('ooooooooooooooooooooooooooooooooooooooo');
+                                              print( availablesize[index]);
+                                               selectedSize=availablesize[index];
                                         });
                                       },
                                       child: Container(
@@ -209,11 +213,14 @@ class _ShProductDetailState extends State<ShProductDetail> {
                                                           255, 252, 158, 189))),
                                           onPressed: () {
                                             checkit="shop";
+                                           
                                             Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                         ShopPayment(userId: widget.userid, dressId: widget.dressId,check: checkit,)));
+                                                         ShopPayment(
+                                                           userId: widget.userid, dressId: widget.dressId,check: checkit,dressSize:selectedSize
+                                                          )));
                                           },
                                           child: Text(
                                             "Payment",

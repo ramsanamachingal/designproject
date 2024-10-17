@@ -1,13 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:login/view/designer/Descontact.dart';
 import 'package:login/view/designer/Postupload.dart';
-import 'package:login/view/designer/VideoUpload.dart';
+
 
 
 class ProfileDesigner extends StatefulWidget {
@@ -82,11 +82,11 @@ class _ProfileDesignerState extends State<ProfileDesigner> {
                       color: Colors.pink,
                     ),
                   ),
-                  Tab(
-                    icon: Icon(
-                      Icons.videocam_rounded,
-                    ),
-                  ),
+                  // Tab(
+                  //   icon: Icon(
+                  //     Icons.videocam_rounded,
+                  //   ),
+                  // ),
                   Tab(
                     icon: Icon(
                       Icons.person,
@@ -97,7 +97,7 @@ class _ProfileDesignerState extends State<ProfileDesigner> {
                     child: TabBarView(
                         children: [
                           PostUpload(), 
-                          VideoUpload(),
+                          // VideoUpload(),
                            DesignerContact()
                            ]
                            )

@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:login/Service/sh_drs.dart';
 import 'package:login/view/Shop/shopPrrofile.dart';
+import 'package:login/view/function.dart/shop_bottom.dart';
 
 class ShopUpload extends StatefulWidget {
   const ShopUpload({super.key});
@@ -258,7 +259,7 @@ final nameController=TextEditingController();
                          priceController.text,
                           qtyController.text,
                            tapvalue.toString());
-                         Navigator.push(context, MaterialPageRoute(builder: (context)=>const ShopProfile()));
+                         Navigator.push(context, MaterialPageRoute(builder: (context)=> ShopBottom(indexnum: 3,)));
                       },
                       child: Text(
                         "Upload",

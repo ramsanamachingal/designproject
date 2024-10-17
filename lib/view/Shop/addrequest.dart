@@ -8,9 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:login/Service/reqst.dart';
-import 'package:login/view/Shop/request.dart';
-
-List<String> a = ["All", "Rose", "Catherine", "Roma"];
 
 class AddRequest extends StatefulWidget {
   const AddRequest({super.key});
@@ -20,23 +17,48 @@ class AddRequest extends StatefulWidget {
 }
 
 class _AddRequestState extends State<AddRequest> {
-  RequestJob rqst=RequestJob();
-  FirebaseFirestore fire=FirebaseFirestore.instance;
-  final currentuid=FirebaseAuth.instance.currentUser!.uid;
+  RequestJob rqst = RequestJob();
+  FirebaseFirestore fire = FirebaseFirestore.instance;
+  final currentuid = FirebaseAuth.instance.currentUser!.uid;
   String? imageUrl;
   File? selectedimage;
-  Future<void>_pickedImageGallery()async{
-    final pickedImage=
-    await ImagePicker().pickImage(source: ImageSource.gallery);
-    if(pickedImage==null)return;
+
+  List<String> designerNames = ["All"]; // Ensure this is a List<String>
+
+  @override
+  void initState() {
+    super.initState();
+    fetchDesigners(); // Fetch designers when the screen initializes
+  }
+
+  Future<void> fetchDesigners() async {
+    try {
+      QuerySnapshot snapshot = await fire.collection('Designer').get();
+      List<String> names = snapshot.docs.map((doc) {
+        // Ensure that we are getting String values only
+        return (doc['Designer name:'] ?? '').toString();
+      }).toList();
+      setState(() {
+        designerNames.addAll(names);
+      });
+    } catch (e) {
+      print('Error fetching designers: $e');
+    }
+  }
+
+  Future<void> _pickedImageGallery() async {
+    final pickedImage =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedImage == null) return;
     setState(() {
-      selectedimage=File(pickedImage.path);
+      selectedimage = File(pickedImage.path);
     });
   }
-  final Reference firestorage=FirebaseStorage.instance.ref();
-  String uniqueImageName=DateTime.now().microsecondsSinceEpoch.toString();
-  
-  String dropvalue = a.first;
+
+  final Reference firestorage = FirebaseStorage.instance.ref();
+  String uniqueImageName = DateTime.now().microsecondsSinceEpoch.toString();
+  String dropvalue = "All"; // Default dropdown value
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,8 +87,7 @@ class _AddRequestState extends State<AddRequest> {
               Container(
                 height: 650,
                 width: 350,
-                decoration:
-                    BoxDecoration(border: Border.all(color: Colors.pink)),
+                decoration: BoxDecoration(border: Border.all(color: Colors.pink)),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
@@ -77,14 +98,15 @@ class _AddRequestState extends State<AddRequest> {
                           height: 380,
                           width: 230,
                           decoration: BoxDecoration(
-                            image: DecorationImage(image: selectedimage !=null
-                            ? FileImage(selectedimage!):
-                            AssetImage("assets/5ff089db70274bdaa8584427fbb72ec5.jpg") 
-                            as ImageProvider,fit: BoxFit.cover) ,
+                              image: DecorationImage(
+                                  image: selectedimage != null
+                                      ? FileImage(selectedimage!)
+                                      : AssetImage(
+                                              "assets/5ff089db70274bdaa8584427fbb72ec5.jpg")
+                                          as ImageProvider,
+                                  fit: BoxFit.cover),
                               border: Border.all(color: Colors.pink),
                               borderRadius: BorderRadius.circular(7)),
-                          //decoration: const BoxDecoration(image: DecorationImage(image: AssetImage("assets/7665529cfc9ca78b43a73d3f951d8ca7.jpg"))),
-                          // color: Colors.pink,
                           child: IconButton(
                               onPressed: _pickedImageGallery,
                               icon: const Icon(
@@ -104,27 +126,29 @@ class _AddRequestState extends State<AddRequest> {
                               style: GoogleFonts.pacifico(
                                   color: Colors.pink, fontSize: 20),
                             ),
-                            // Text("All",style:GoogleFonts.pacifico(color:Colors.black), ),
-                            TextFormField(
-                                decoration: InputDecoration(
-                              border: OutlineInputBorder(
+                            const SizedBox(height: 10),
+                            DropdownButtonFormField<String>(
+                              value: dropvalue,
+                              items: designerNames.map((name) {
+                                return DropdownMenuItem<String>(
+                                    value: name, child: Text(name));
+                              }).toList(),
+                              onChanged: (newValue) {
+                                setState(() {
+                                  dropvalue = newValue!;
+                                });
+                              },
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(7),
-                                  borderSide: const BorderSide(color: Colors.pink)),
-                              suffixIcon: DropdownButton(
-                                value: dropvalue,
-                                  items: a.map((value) {
-                                    
-                                    return DropdownMenuItem(
-                                        value: value, child: Text(value));
-                                  }).toList(),
-                                  onChanged: ((value) {
-                                    setState(() {
-                                      dropvalue = value!;
-                                    });
-                                    
-                                  })),
-                            )),
-                            const SizedBox(height: 30,),
+                                  borderSide:
+                                      const BorderSide(color: Colors.pink),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 30,
+                            ),
                             Center(
                               child: ElevatedButton(
                                   style: ButtonStyle(
@@ -136,24 +160,23 @@ class _AddRequestState extends State<AddRequest> {
                                                   color: Colors.white))),
                                       backgroundColor: const MaterialStatePropertyAll(
                                           Colors.pink)),
-                                  onPressed: () async{
-                                    if(selectedimage !=null){
-                                      Reference referenceImageToUpload=firestorage.child(uniqueImageName);
-                                      try{
-                                        await referenceImageToUpload.putFile(selectedimage!);
-                                        imageUrl=await referenceImageToUpload.getDownloadURL();
-                                      }
-                                      catch(e){
+                                  onPressed: () async {
+                                    if (selectedimage != null) {
+                                      Reference referenceImageToUpload =
+                                          firestorage.child(uniqueImageName);
+                                      try {
+                                        await referenceImageToUpload
+                                            .putFile(selectedimage!);
+                                        imageUrl = await referenceImageToUpload
+                                            .getDownloadURL();
+                                      } catch (e) {
                                         print(e);
-
                                       }
                                     }
                                     rqst.requestView(currentuid,
-                                     imageUrl.toString(), dropvalue);
-                                     Navigator.pop(context);
-
-                                    // Navigator.push(context, MaterialPageRoute(builder: (context)=>const Request()));
-                                    },
+                                        imageUrl.toString(), dropvalue);
+                                    Navigator.pop(context);
+                                  },
                                   child: Text(
                                     "Update",
                                     style: GoogleFonts.pacifico(

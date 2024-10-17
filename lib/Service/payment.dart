@@ -43,20 +43,30 @@ class PaymentController with ChangeNotifier {
 
 
 FirebaseFirestore fire = FirebaseFirestore.instance;
- Future<void> paymentSample(
-  String id,
+Future<void> paymentSample(
   String price,
   String status,
   String name,
+  String userid,
+  String size,
+   String image
 ) async {
+  // Generate an automatic document ID
+  DocumentReference docRef = fire.collection("payment").doc(); 
+  String id = docRef.id; // Retrieve the generated ID
+
   Map<String, dynamic> pay = {
     "id": id,
     "paid to": name,
     "price": price,
     "paymentStatus": status,
+    "paid from": userid,
+    "size":size,
+    "image":image,
     "timestamp": FieldValue.serverTimestamp(), // Add this line
   };
-  await fire.collection("payment").doc(id).set(pay);
+  
+  await docRef.set(pay); // Use the doc reference for storing data
 }
 
   // Future updatePayment(id) async {

@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:login/view/Shop/shopinfo.dart';
 import 'package:login/view/Shop/shpost.dart';
-import 'package:login/view/Shop/shvideo.dart';
+
 
 class ShopProfile extends StatefulWidget {
   const ShopProfile({super.key});
@@ -58,28 +58,28 @@ class _ShopProfileState extends State<ShopProfile> {
                 ],
               );
             }),
-            TabBar(tabs: [
+            const TabBar(tabs: [
                     Tab(
                       icon: Icon(
                         Icons.image,
                         color: Colors.pink,
                       ),
                     ),
-                    Tab(
-                      icon: Icon(
-                        Icons.videocam_rounded,
-                      ),
-                    ),
+                    // Tab(
+                    //   icon: Icon(
+                    //     Icons.videocam_rounded,
+                    //   ),
+                    // ),
                     Tab(
                       icon: Icon(
                         Icons.person,
                       ),
                     )
                   ]),
-                    Expanded(
-                      child: const TabBarView(children: [
+                    const Expanded(
+                      child: TabBarView(children: [
                       ShopPost(),
-                      ShopVideeo(),
+                      // ShopVideeo(),
                       ShopInfo()
                                           ]),
                     )

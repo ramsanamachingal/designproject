@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:login/Admin/adDesign.dart';
 import 'package:login/view/Auth/ShopLogin.dart';
+import 'package:login/view/Auth/Type.dart';
 
 class ShopDrawer extends StatefulWidget {
   const ShopDrawer({super.key});
@@ -63,7 +64,7 @@ class _ShopDrawerState extends State<ShopDrawer> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const ShopLogin()),
+                                              const TypePage()),
                                       (route) => false);
                                 },
                                 child: const Text("Yes"),

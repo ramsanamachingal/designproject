@@ -121,7 +121,7 @@ class _ShopHomeState extends State<ShopHome> {
                                       ),
                                     ),
                                     SizedBox(
-                                      width: 120,
+                                      width: 140,
                                     ),
                                     Text(
                                       price,
@@ -213,7 +213,7 @@ class _ShopHomeState extends State<ShopHome> {
                                     ),
                                   ),
                                   SizedBox(
-                                    width: 160,
+                                    width: 100,
                                   ),
                                   Text(
                                     price,

@@ -3,9 +3,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:login/view/Shop/ShopHome.dart';
+import 'package:login/view/Shop/ShopOrder.dart';
 import 'package:login/view/Shop/request.dart';
 import 'package:login/view/Shop/shopPrrofile.dart';
-import 'package:login/view/Shop/shopUpload.dart';
+// import 'package:login/view/Shop/shopUpload.dart';
 
 
 class ShopBottom extends StatefulWidget {
@@ -20,7 +21,7 @@ class _ShopBottomState extends State<ShopBottom> {
  final _pages=[
     
     const ShopHome(),
-    // const ShopUpload(),
+    const ShopOrder(),
     const Request(),
     const ShopProfile()
     
@@ -61,8 +62,8 @@ Widget mynav({
     items: [
       BottomNavigationBarItem(icon: const Icon(Icons.home),label: "Home",
       backgroundColor: Colors.grey[850],),
-      //  BottomNavigationBarItem(icon: const Icon(Icons.file_upload_rounded),label: "Upload",
-      // backgroundColor: Colors.grey[850],),
+       BottomNavigationBarItem(icon: const Icon(Icons.file_upload_rounded),label: "Order",
+      backgroundColor: Colors.grey[850],),
        BottomNavigationBarItem(icon: const Icon(Icons.content_paste_search_outlined),label: "Request",
       backgroundColor: Colors.grey[850],),
        BottomNavigationBarItem(icon: const Icon(Icons.person),label: "Profile",
